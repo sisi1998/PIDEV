@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PerformanceEquipe index{% endblock %}
+
+{% block body %}
+    <h1>PerformanceEquipe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_performance</th>
+                <th>Description</th>
+                <th>Date_mise_a_jour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for performance_equipe in performance_equipes %}
+            <tr>
+                <td>{{ performance_equipe.id }}</td>
+                <td>{{ performance_equipe.nomPerformance }}</td>
+                <td>{{ performance_equipe.description }}</td>
+                <td>{{ performance_equipe.dateMiseAJour ? performance_equipe.dateMiseAJour|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_performance_equipe_show', {'id': performance_equipe.id}) }}">show</a>
+                    <a href="{{ path('app_performance_equipe_edit', {'id': performance_equipe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_performance_equipe_new') }}">Create new</a>
+{% endblock %}

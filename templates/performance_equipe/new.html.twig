@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PerformanceEquipe{% endblock %}
+
+{% block body %}
+    <h1>Create new PerformanceEquipe</h1>
+
+    {{ include('performance_equipe/_form.html.twig') }}
+
+    <a href="{{ path('app_performance_equipe_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PerformanceEquipe{% endblock %}
+
+{% block body %}
+    <h1>PerformanceEquipe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ performance_equipe.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_performance</th>
+                <td>{{ performance_equipe.nomPerformance }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ performance_equipe.description }}</td>
+            </tr>
+            <tr>
+                <th>Date_mise_a_jour</th>
+                <td>{{ performance_equipe.dateMiseAJour ? performance_equipe.dateMiseAJour|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_performance_equipe_index') }}">back to list</a>
+
+    <a href="{{ path('app_performance_equipe_edit', {'id': performance_equipe.id}) }}">edit</a>
+
+    {{ include('performance_equipe/_delete_form.html.twig') }}
+{% endblock %}
