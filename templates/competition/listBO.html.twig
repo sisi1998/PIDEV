@@ -1,0 +1,125 @@
+{% extends "baseBO.html.twig" %}
+{% block content %}
+	
+
+
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+	<!-- ======= Services Section ======= -->
+		<section id="services" class="services section-bg"> <div class="container" data-aos="fade-up">
+
+			<div class="section-title">
+				<h2>Nos competitions</h2>
+			
+				<p>Pour mieux gérer les competitions.</p>
+			</div>
+
+
+	  <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+		{{ form_start(form) }}
+		 {{ form_widget(form.Nom)}}
+	    <button type="submit" class="btn btn-default">search</button>
+		  {{ form_end(form) }}
+        
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+		 
+		  
+			
+         
+		  <br>
+		  <br>
+		   <a class="getstarted scrollto" style="border-radius: 30px; border: solid; width : 20px"
+ href="{{ path('addCompetition')}}">Ajouter competition</a>
+		  <br>
+		    <br>
+		  <br>
+		  <br>
+        </div>
+      </div>
+    </div>
+
+
+			<div class="row">
+				{% for competition in competitions %}
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+						<div class="icon-box" style="width: 230px; height: 250px; margin-bottom: 30px; background-color: #192841; text-align:center; box-shadow: 5px 10px; ">
+							<div class="icon">
+								<i class="bx bxl-dribbble"></i>
+							</div>
+							<h4>
+								<a href="">{{ competition.nom }}</a>
+							</h4>
+							<p>{{ competition.Date }}</p>
+							
+							<p>
+								<a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a></p>
+								<p><a href="{{ path('deleteCompetmition',{'id':competition.id}) }}">delete</a></p>
+								<p><a href="{{ path('updateCompetition',{'id':competition.id}) }}">update</a></p>
+							</p>
+
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+		</section>
+		<!-- End Services Section -->
+
+
+		<section id="cta" class="cta">
+			<div class="container" data-aos="zoom-in">
+
+				<div class="row">
+					<div class="col-lg-9 text-center text-lg-start">
+					
+					</div>
+			
+				</div>
+
+			</div>
+			<div>
+
+           </div>
+			<!-- ======= Clients Section ======= -->
+			<section id="clients" class="clients section-bg">
+				<div class="container">
+
+					<div class="row" data-aos="zoom-in">
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-1.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-2.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-3.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-4.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-5.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-6.png" class="img-fluid" alt="">
+						</div>
+
+					</div>
+
+				</div>
+			</section>
+
+			 <a href="{{ path('addCompetition')}}" class="btn"  style="border-radius: 20px; border: 2px ;" ><i class="icon-pencil"></i> <strong>Ajouter une competition</strong></a>
+			  <script src="/vendor/vendorB/aos/aos.js"></script>
+			<!-- End Cliens Section -->
+		{% endblock %}

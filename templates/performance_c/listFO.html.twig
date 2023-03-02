@@ -1,0 +1,239 @@
+
+	{% extends "baseFO.html.twig" %}
+{% block content %}
+<link href="/css/contact.css" rel="stylesheet">
+ <link href="/css/csstableper.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<div class="container" style='background-color: white , transform: translate(0,30%)'>
+
+<div class="album py-5 bg-light">
+                        <div class="container">
+                            <div class="sidebar-search" >
+                                <div class="input-group custom-search-form">
+                                    <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 1180px;background: white">
+                                </div>
+                                <br>
+                                <!-- /input-group -->
+                                <ul class="nav" id="side-menu">
+                                    <li>
+                                        <a href="#"> <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level" id="entitiesNav">
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="row d-flex" id="containerr">
+                <div id="search"></div>
+
+
+    <div class="row col-md-6 col-md-offset-2 custyle">
+
+
+    <table class="table table-striped custab">
+    <thead>
+   
+            <th>joueur</th>
+            <th>competition</th>
+            <th> Apps</th>
+              <th>Mins</th>
+               <th>Buts</th>
+        <th>points decisives</th>
+        <th>Jaune</th>
+        <th>Rouge</th>
+        <th>tpm</th>
+        <th>pr</th>
+        <th>AG</th>
+         <th>hddm</th>
+          <th>note</th>
+            
+       
+        </tr>
+    </thead>
+      {% for per in performances %}
+             <tr>
+      <td>{{ per.joueurP.getNom() }}</td>
+        <td>{{ per.competitionP.getNom()}}</td>
+        <td>{{ per.Apps}}</td>
+         <td>{{ per.Mins}}</td>
+          <td>{{ per.Buts}}</td>
+           <td>{{ per.PointsDecisives}}</td>
+            <td>{{ per.Jaune}}</td>
+             <td>{{ per.Rouge}}</td>
+              <td>{{ per.TpM}}</td>
+                <td>{{ per.Pr}}</td>
+               <td>{{ per.AeriensG}}</td>
+                 <td>{{per.HdM}}</td>
+                <td>{{ per.Note}}</td>
+                  
+                  
+        </tr>
+                
+    {% endfor %}
+
+            
+    </table>
+   
+
+
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Click Me</button></div>
+
+
+<!-- line modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-left: 10px;">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			<h3 class="modal-title" id="lineModalLabel">Contacter l'admin </h3>
+		</div>
+		<div class="modal-body">
+			
+            <!-- content goes here -->
+			{{ form_start(form) }}
+              <div class="form-group">
+           {{ form_widget(form.title, {'attr':{'class':'form-control','id':'exampleInputPassword1'}})}}
+              </div>
+              <div class="form-group">
+
+              {{ form_row(form.email,{'attr':{'class':'form-control','id':'exampleInputEmail1' }}) }}
+              </div>
+            {{ form_row(form.message,{'attr':{'class':'form-control','id':'exampleInputEmail1' }}) }}
+			
+
+              <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+              </div>
+              
+              <button type="submit" class="btn btn-default">Submit</button>
+            {{ form_end(form) }}
+
+		</div>
+		<div class="modal-footer">
+			<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+				</div>
+				<div class="btn-group btn-delete hidden" role="group">
+					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 3;
+                var that = this;
+                var value = $(this).val(); // elyyktbo fi input 7atito fi var var
+                var entitySelector = $("#entitiesNav").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'comp') {
+                                            if (id != 'error') {
+                                                x= document.getElementById("containerr");
+                                                entitySelector.append('<div style="display: table;width:100%;padding: 15px"><span style="text-align: center">'+value[]+'</span><br/><a href="/show_products_cat/'+id+'"></a></div>');
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".btn1").click(function(){
+                $("h1").slideUp();
+            });
+            $(".btn2").click(function(){
+                $("h1").slideDown();
+            });
+            $(".btn3").click(function(){
+                $("h1").slideToggle();
+            });
+        });
+    </script>
+
+
+
+
+    {% endblock %}

@@ -1,0 +1,105 @@
+{% extends "baseFO.html.twig" %}
+{% block content %}
+
+
+	<section id="services" class="services section-bg">
+		<div class="container" data-aos="fade-up">
+
+			<div class="section-title">
+				<section id="portfolio-details" class="portfolio-details" margin-left :50%>
+					<h2>{{ competition.nom}}</h2>
+					<p>Pour mieux gérer les competitions.</p>
+
+					<center>
+
+						<div class="container ">
+
+							<div class="row gy-4 forced" style="display: flex;
+									  align-content: center;
+									  justify-content: center;
+									  align-items: center;
+									  flex-wrap: nowrap;
+									  flex-direction: row;">
+
+								<div class="col-lg-8">
+									<div class="portfolio-details-slider swiper">
+										<div class="swiper-wrapper align-items-center">
+
+											<div class="swiper-slide">
+												<img src="/img/imgFO/01.jpg" alt="">
+											</div>
+
+											<div class="swiper-slide">
+												<img src="/img/imgFO/02.jpg" alt="">
+											</div>
+
+											<div class="swiper-slide">
+												<img src="/img/imgFO/01.jpg" alt="">
+											</div>
+
+										</div>
+										<div class="swiper-pagination"></div>
+									</div>
+								</div>
+							</div>
+						</center>
+
+
+						<div class="row">
+							{% for  equipe in competition.getEquipes()  %}
+								<div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+									<div class="icon-box">
+										<div class="icon">
+											<i class="bx bxl-dribbble"></i>
+										</div>
+										<h4>
+											<a href="">{{ equipe.id}}</a>
+										</h4>
+										<p>{{ equipe.nom}}</p>
+
+
+									</div>
+								</div>
+							{% endfor %}
+
+
+						</div>
+
+					</section>
+					<!-- End Services Section -->
+
+
+					<!-- Favicons -->
+					<link href="/img/fav.png" rel="icon">
+					<link
+					href="/img/imgB/apple-touch-icon.png" rel="apple-touch-icon">
+
+					<!-- Google Fonts -->
+					<link
+					href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+					<!-- Vendor CSS Files -->
+					<link href="/vendor/vendorB/aos/aos.css" rel="stylesheet">
+					<link href="/vendor/vendorB/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+					<link href="/vendor/vendorB/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+					<link href="/vendor/vendorB/boxicons/css/boxicons.min.css" rel="stylesheet">
+					<link href="/vendor/vendorB/glightbox/css/glightbox.min.css" rel="stylesheet">
+					<link href="/vendor/vendorB/remixicon/remixicon.css" rel="stylesheet">
+					<link
+					href="/vendor/vendorB/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+					<!-- Template Main CSS File -->
+					<link href="/css/cssB/style.css" rel="stylesheet">
+
+					<script src="/vendor/vendorB/aos/aos.js"></script>
+					<script src="/vendor/vendorB/bootstrap/js/bootstrap.bundle.min.js"></script>
+					<script src="/vendor/vendorB/glightbox/js/glightbox.min.js"></script>
+					<script src="/vendor/vendorB/isotope-layout/isotope.pkgd.min.js"></script>
+					<script src="/vendor/vendorB/swiper/swiper-bundle.min.js"></script>
+					<script src="/vendor/vendorB/waypoints/noframework.waypoints.js"></script>
+					<script src="/vendor/vendorB/php-email-form/validate.js"></script>
+
+					<!-- Template Main JS File -->
+					<script src="/js/jsB/main.js"></script>
+
+				{% endblock %}

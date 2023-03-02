@@ -1,0 +1,36 @@
+	{% extends "baseBo.html.twig" %}
+{% block content %}
+<table border="1">
+    <tr>
+        <td>joueur</td>
+        <td>competition</td>
+        <td>apps</td>
+        <td>mins</td>
+        <td>buts</td>
+        <td>pd</td>
+         <td>jaune</td>
+          <td>rouge</td>
+           <td>tpm</td>
+        <td>pr</td>
+        <td>ag</td>
+        <td>hdm</td>
+        
+
+          
+
+    </tr>
+    <tr>
+        <td>{{ performanceC.JoueurP.getNom()}}</td>
+        <td>{{ performanceC.competitionP.getNom()}}</td>
+        <td>{{ performanceC.Apps}}</td>
+         <td>{{ performanceC.Mins}}</td>
+          <td>{{ performanceC.Buts}}</td>
+           <td>{{ performanceC.PointsDecisives}}</td>
+            <td>{{ performanceC.Jaune}}</td>
+             <td>{{ performanceC.Rouge}}</td>
+              <td>{{ performanceC.TpM}}</td>
+               <td>{{ performanceC.AeriensG}}</td>
+                <td>{{ performanceC.Note}}</td>
+        
+    </tr>
+</table>

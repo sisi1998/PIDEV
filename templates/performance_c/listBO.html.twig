@@ -1,0 +1,86 @@
+
+	{% extends "baseBo.html.twig" %}
+{% block content %}
+<table border="1">
+    <tr>
+       
+   
+   
+    </tr>
+   
+    
+          
+       
+</table>
+
+ <link href="/css/csstableper.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+<div class="row">
+
+<div class="col-lg-12">
+          <a href="{{ path('exportPdf') }}" class="btn btn-success btn-xs pull-right" style={"padding":"15px",}><b>+</b> Exporter</a>
+
+
+
+</div>
+</div>
+    <div class="row col-md-6 col-md-offset-2 custyle">
+
+    <table class="table table-striped custab">
+    <thead>
+<br/>
+    <a href="{{ path('addPerformance') }}" class="btn btn-primary btn-xs pull-right"><b>+</b> ajouter une performance</a>
+        <tr>
+            <th>joueur</th>
+            <th>competition</th>
+            <th> Apps</th>
+              <th>Mins</th>
+               <th>Buts</th>
+        <th>points decisives</th>
+        <th>Jaune</th>
+        <th>Rouge</th>
+        <th>tpm</th>
+        <th>pr</th>
+        <th>AG</th>
+         <th>hddm</th>
+          <th>note</th>
+            
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+      {% for per in performances %}
+             <tr>
+      <td>{{ per.joueurP.getNom() }}</td>
+        <td>{{ per.competitionP.getNom()}}</td>
+        <td>{{ per.Apps}}</td>
+         <td>{{ per.Mins}}</td>
+          <td>{{ per.Buts}}</td>
+           <td>{{ per.PointsDecisives}}</td>
+            <td>{{ per.Jaune}}</td>
+             <td>{{ per.Rouge}}</td>
+              <td>{{ per.TpM}}</td>
+                <td>{{ per.Pr}}</td>
+               <td>{{ per.AeriensG}}</td>
+                 <td>{{per.HdM}}</td>
+                <td>{{ per.Note}}</td>
+                  <td>
+                  <a class='btn btn-info btn-xs' href="{{ path('updatePerformance',{'id':per.id}) }}"><span class="glyphicon glyphicon-edit"></span>Update</a>
+                <a class="btn btn-danger btn-xs" href="{{ path('deletePerformance',{'id':per.id}) }}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                 <a class="btn btn-info btn-xs " href="{{ path('showPerformance',{'id':per.id}) }}">Show</a></td>
+        </tr>
+                
+    {% endfor %}
+
+            
+    </table>
+    </div>
+
+
+</div>
+
+    {% endblock %}

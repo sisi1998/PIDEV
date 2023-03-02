@@ -1,0 +1,28 @@
+
+{% block body %}
+      {% for per in listP %}
+      <p><span style="color:red;font-size:15px;">Nom jour :</span>{{ per.joueurP.getNom() }}</p>
+            <p><span style="color:red;font-size:15px;">Competition jour :</span>{{ per.competitionP.getNom() }}</p>
+
+        <p>{{ per.Apps}}</p>
+         <p>{{ per.Mins}}</p>
+          <p>{{ per.Buts}}</p>
+           <p>{{ per.PointsDecisives}}</p>
+            <p>{{ per.Jaune}}</p>
+             <p>{{ per.Rouge}}</p>
+              <p>{{ per.TpM}}</p>
+                <p>{{ per.Pr}}</p>
+               <p>{{ per.AeriensG}}</p>
+                 <p>{{per.HdM}}</p>
+                <p>{{ per.Note}}</p>
+                 </tr>
+                
+    {% endfor %}
+
+            
+    </div>
+
+
+</div>
+
+    {% endblock %}

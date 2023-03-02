@@ -1,0 +1,61 @@
+{% extends "baseBo.html.twig" %}
+
+{% block content %}
+{{ form_start(form) }}
+{{form_label(form.joueurP,"joueur")}}
+{{ form_widget(form.joueurP, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.joueurP) }}
+{{form_label(form.competitionP,"Competitions")}}
+{{ form_widget(form.competitionP, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.competitionP) }}
+
+{{form_label(form.Apps,"Apps")}}
+{{ form_widget(form.Apps, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Apps) }}
+
+{{form_label(form.Mins,"Mins")}}
+{{ form_widget(form.Mins, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Mins) }}
+
+{{form_label(form.Buts,"Buts")}}
+{{ form_widget(form.Buts, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Buts) }}
+
+
+{{form_label(form.PointsDecisives,"PointsDecisives")}}
+{{ form_widget(form.PointsDecisives, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.PointsDecisives) }}
+
+{{form_label(form.Jaune,"Jaune")}}
+{{ form_widget(form.Jaune, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Jaune) }}
+
+{{form_label(form.Rouge,"Rouge")}}
+{{ form_widget(form.Rouge, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Rouge) }}
+
+{{form_label(form.TpM,"TpM")}}
+{{ form_widget(form.TpM, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.TpM )}}
+
+{{form_label(form.Pr,"Pr")}}
+{{ form_widget(form.Pr, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Pr) }}
+
+{{form_label(form.AeriensG,"AeriensG")}}
+{{ form_widget(form.AeriensG, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.AeriensG) }}
+
+
+{{form_label(form.HdM,"HdM")}}
+{{ form_widget(form.HdM ,{'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.HdM) }}
+
+{{form_label(form.Note,"HdM")}}
+{{ form_widget(form.Note, {'attr':{'class':'form-control' ,'style':"margin-left: 15px; margin-bottom: 10px; border-radius: 30px;"}}) }}
+{{ form_errors(form.Note) }}
+<button type="submit" class="btn btn-primary" style="width: 150px; margin-left: auto; margin-right: auto">Create!</button>
+			{{ form_end(form) }}
+{% endblock  %}
+
+

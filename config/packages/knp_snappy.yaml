@@ -1,0 +1,7 @@
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf # path to the wkhtmltopdf binary
+        options:    [] # optional, add any additional command-line options here
+
+

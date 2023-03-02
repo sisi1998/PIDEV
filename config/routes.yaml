@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+# config/routes.yaml
+pdf:
+    path: '/dd'
+    controller: App\Controller\PdfController:generatePdf'
