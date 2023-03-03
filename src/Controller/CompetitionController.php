@@ -58,15 +58,8 @@ class CompetitionController extends AbstractController
     public function listCompetiton(Request $request)
     {
       
-        $competition = new Competition();
-        $form = $this->createForm( CompetitionSearchType::class, $competition);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $competitionN=$this->getDoctrine()->getRepository(Competition::class)->findOneBy(['Nom'=>$form->get('Nom')->getData()]);
-            return $this->render('competition/showBO.html.twig', array("competition" => $competitionN ));}
-       
         $competitions = $this->getDoctrine()->getRepository(Competition::class)->findAll();
-        return $this->render('competition/listBO.html.twig', ["competitions" => $competitions,'form'=>$form->createView()]);
+        return $this->render('competition/listBO.html.twig', ["competitions" => $competitions]);
     }
 
      /**
@@ -75,24 +68,21 @@ class CompetitionController extends AbstractController
     public function listCompetitonF(Request $request)
     {   $competitions = $this->getDoctrine()->getRepository(Competition::class)->findAll();
 
-        $competition = new Competition();
-       /*  $form = $this->createForm( CompetitionSearchType::class, $competition);
+      
+        $form = $this->createForm( CompetitionSearchType::class);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted()){
             $nom= $form->get('Nom')->getData();
-            $etat= $form->get('Etat')->getData();
-            $genre= $form->get('Genre')->getData();
-            $comp=new Competition();
-            $comp->setNom($nom);
-            $comp->setEtat($etat);
-            $comp->setGenre($genre);
             $em = $this->getDoctrine()->getManager();
-            $competitiony=$em->getRepository(Competition::class)->findBycritere($comp);
-            if ($competitiony)
-           {return $this->render('competition/listFO.html.twig', ["competitions" => $competitiony,'form'=>$form->createView()]);}
-           else {return $this->render('competition/listFO.html.twig', ["competitions" => $competitions,'form'=>$form->createView()]);}
-        */return $this->render('competition/listFO.html.twig', ["competitions" => $competitions]);
+            $comp=$em->getRepository(Competition::class)->searchByCriteria($nom);
+        
+
+           if($comp) {
+            
+                return $this->render('competition/listFO.html.twig',  ["competitions" => $comp,'form'=>$form->createView()]);
+        }}
+           return $this->render('competition/listFO.html.twig', ["competitions" => $competitions,'form'=>$form->createView()]);
     }
 
 
@@ -208,4 +198,33 @@ class CompetitionController extends AbstractController
     }
 
 
+
+
+     /**
+     * @Route("/searchC{id}", name="searchC")
+     */
+    public function search(Request $request)
+    {
+        $form = $this->createForm(CompetitionSearchType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom= $form->get('Nom')->getData();
+            $etat= $form->get('Etat')->getData();
+            $date= $form->get('Date')->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            $comp=$em->getRepository(Competition::class)->searchByCriteria($nom, $date, $etat);
+            if(!$comp) {
+                $result['comp']['error'] = "Competition de ce Nom non trouvé :( ";
+            } else {
+                $this->render('competition/showBO.html.twig', array("competition" => $comp ));
+            }
+        }
+
+        return $this->render('competition/search.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

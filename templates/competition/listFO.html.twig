@@ -33,6 +33,13 @@
                         <div class="container">
                             <div class="sidebar-search" >
                                 <div class="input-group custom-search-form">
+                                		 {{ form_start(form) }}
+
+                 {{ form_widget(form.Nom) }}
+		  
+			<button type="submit" class="btn btn-primary" style="width: 150px; margin-left: auto; margin-right: auto">Create!</button>
+
+                       {{ form_end(form) }}
                                     <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 1180px;background: white">
                                 </div>
                                 <br>

@@ -5,7 +5,8 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Knp\Snappy\Pdf;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+use App\Repository\PerformanceCRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\PerformanceC;
 use App\Entity\Competition;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -173,13 +174,10 @@ class PerformanceCController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
 
         //get list perfo
-
-
-        
         
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('pdf/template.html.twig', [
-            'title' => "Welcome to our PDF Test",
+            'title' => "Toutes vos performances",
             'listP'=>$this->getDoctrine()->getRepository(PerformanceC::class)->findAll(),
         ],);
         
@@ -225,14 +223,63 @@ class PerformanceCController extends AbstractController
 
 
 
+    public function searchAdd(Request $request): JsonResponse
+    {
+        $query = $request->query->get('q');
+
+       
+
+        $results = []; // Replace with actual search results
+
+        return new JsonResponse($results);
+    }
+
 
 
     // LES  attributs
     public function getRealEntities($comp){
         foreach ($comp as $comp){
-            $realEntities[$comp->getId()] = [$comp->getNom(),$comp->getDate()];
+            $realEntities[$comp->getId()] = [$comp->getDate()];
 
         }
         return $realEntities;
     }
+
+
+    /**
+     * @Route("/sales-data", name="sales_data")
+     */
+public function stats(EntityManagerInterface $em1){
+
+
+    $but = $em1->getRepository(PerformanceC::class)->sumButs();
+    $rouge = $em1->getRepository(PerformanceC::class)->sumRouge();
+    $jaune = $em1->getRepository(PerformanceC::class)->sumJaune();
+    $pd = $em1->getRepository(PerformanceC::class)->sumPointsDecisives();
+    $ag = $em1->getRepository(PerformanceC::class)->sumAeriensG();
+    $data=[$but,$pd,$ag];
+    $data2=[$rouge,$jaune];
+
+    //this 2nd chart
+
+    
+  
+
+    return $this->render('performance_c/stats.html.twig', [
+         'data' =>$data, 'data2'=>$data2
+    ]);
+}
+
+
+
+
+   /**
+     * @Route("/con-chart{id}", name="con_chart")
+     */
+    public function chart(EntityManagerInterface $em1,$id)
+    {  $perfs = $em1->getRepository(PerformanceC::class)->average($id);
+        dd($perfs);
+        return $this->render('performance_c/stats.html.twig');
+    }
+    
 }

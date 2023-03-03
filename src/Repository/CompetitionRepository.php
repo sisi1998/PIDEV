@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Competition;
 use App\Repository\PerformanceCRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -55,8 +55,24 @@ class CompetitionRepository extends ServiceEntityRepository
 
 
    
+//multiple search 
+  public function searchByCriteria($val)
+{
+    $qb = $this->createQueryBuilder('e');
 
+        $qb->where($qb->expr()->orX(
+            $qb->expr()->like('e.Nom', ':searchTerm'),
+            $qb->expr()->like('e.Date', ':searchTerm'),
+            $qb->expr()->like('e.Etat', ':searchTerm')
+        ))
+        ->setParameter('searchTerm', '%'.$val.'%')
+        ;
 
+        return $qb->getQuery()->getResult();
+    
+}
+        
+    
   
 //    /**
 //     * @return Competition[] Returns an array of Competition objects
@@ -104,15 +120,4 @@ public function findCompetitionUnFinished(){
    //using query builder
   
 
-    public function findBycritere($competition)
-    {      
-        $this->createQueryBuilder('c')
-        ->andWhere('c.Nom LIKE :nom')
-        ->orWhere('c.etat LIKE :etat')
-        ->orWhere('c.genre LIKE :genre')
-        ->setParameter('nom', '%'.$competition->getNom().'%')
-        ->setParameter('etat','%'.$competition->getEtat().'%')
-        ->setParameter('genre','%'.$competition->getGenre().'%')
-        ->getQuery()
-        ->execute();
-}}
+    }

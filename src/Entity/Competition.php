@@ -55,15 +55,6 @@ class Competition
     private ?Equipe $winner = null;
 
     
-    
-    #[Groups("competitions")]
-    #[ORM\Column(length: 255,nullable :true)]
-    private ?String $genre = null;
-    
-    
-    #[Groups("competitions")]
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?String $image = null;
 
 
     #[Groups("competitions")]
@@ -88,19 +79,9 @@ class Competition
     {
         return $this->id;
     }
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
+  
 
-
-    public function setGenre(?string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
+  
 
     public function getDate(): ?string
     {
@@ -160,17 +141,8 @@ class Competition
     }
 
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+    
 
 
     public function getEtat(): ?string

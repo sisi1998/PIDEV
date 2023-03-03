@@ -56,30 +56,10 @@ class PerformanceCRepository extends ServiceEntityRepository
     }
 
 
-     public function findPLayerByAVG($min,$max){
-        $entityManager=$this->getEntityManager();
-        $query=$entityManager
-            ->createQuery("SELECT s FROM APP\Entity\Student s WHERE s.moyenne BETWEEN :min AND :max")
-            ->setParameter('min',$min)
-            ->setParameter('max',$max)
-            ;
-        return $query->getResult();
-    }
+   
+ 
 
- public function average($id):int
- {   $qb= $this->createQueryBuilder('per');
-     $qb ->where('per.id=:id');
-     $qb->setParameter('id', $id);
-     $average= intval('per.Apps')*10+intval('per.Mins'*10)+
-     intval('per.Buts'*20)+ intval('per.PointsDecivives'*20)
-     -intval('per.Jaune'*20)
-     -intval('per.Rouge'*10)
-     +intval('per.TpM'*10)
-     +intval('per.Pr'*10)
-     +intval('per.hdM'*10);
-    return $average;
-
- }
+ 
 
  public function orderByButs()
     {
@@ -88,16 +68,9 @@ class PerformanceCRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
     }
 
- public function listStudentByClass($id)
- {
-     return $this->createQueryBuilder('s')
-         ->join('s.classroom', 'c')
-         ->addSelect('c')
-         ->where('c.id=:id')
-         ->setParameter('id',$id)
-         ->getQuery()
-         ->getResult();
- }
+    
+
+
 
  public function rechercheAvance($str) {
     return $this->getEntityManager()
@@ -111,6 +84,93 @@ class PerformanceCRepository extends ServiceEntityRepository
 
 }
  
+
+public function sumButs()
+{
+   
+    $query = $this->createQueryBuilder('e')
+    ->where('e.Buts NOT LIKE :zero')
+    ->setParameter('zero', '0')
+    ->getQuery();
+
+$result = $query->getResult();
+$count = count($result);
+
+return $count;
+}
+
+
+public function sumJaune()
+{
+    $query = $this->createQueryBuilder('e')
+    ->where('e.Jaune NOT LIKE :zero')
+    ->setParameter('zero', '0')
+    ->getQuery();
+
+$result = $query->getResult();
+$count = count($result);
+
+
+return $count;
+
+}
+
+
+public function sumRouge()
+{
+    $query = $this->createQueryBuilder('e')
+        ->where('e.Rouge NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getResult();
+    $count = count($result);
+  
+    return $count;
+}
+
+public function sumPointsDecisives()
+{
+    $query = $this->createQueryBuilder('e')
+        ->where('e.PointsDecisives NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getResult();
+    $count = count($result);
+ 
+    return $count;
+}
+
+public function sumAeriensG()
+{
+    $query = $this->createQueryBuilder('e')
+        ->where('e.AeriensG NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getResult();
+    $count = count($result);
+  
+    return $count;
+}
+
+public function average($id): array
+{   
+    $qb = $this->createQueryBuilder('per');
+    $qb->select(['joueur.id', 'AVG(
+        (per.Apps * 10) + (per.Mins * 10) + (per.Buts * 20) + (per.PointsDecisives * 20)
+        - (per.Jaune * 20) - (per.Rouge * 10) + (per.TpM * 10) + (per.Pr * 10) + (per.HdM * 10)
+    ) as average'])
+       ->join('per.joueurP', 'joueur')
+       ->where('joueur.id = :joueurId')
+       ->groupBy('joueur.id')
+       ->setParameter('joueurId', $id);
+       dd($qb->getQuery()->getResult());
+
+    return $qb->getQuery()->getResult();
+}
+
 
 
 //    /**

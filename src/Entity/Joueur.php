@@ -6,7 +6,7 @@ use App\Repository\JoueurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
 
@@ -15,14 +15,18 @@ class Joueur
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("joueurs")]
     private ?int $id = null;
 
+    #[Groups("joueurs")]
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 
+ #[Groups("joueurs")]
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
-
+    
+ #[Groups("joueurs")]
     #[ORM\Column(length: 255)]
     private ?string $DateNaissance = null;
 
@@ -33,10 +37,10 @@ class Joueur
     #[ORM\OneToMany(mappedBy: 'joueurP', targetEntity: PerformanceC::class)]
     private Collection $performanceCs;
 
-    public function __construct()
-    {
-        $this->performanceCs = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->performanceCs = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {

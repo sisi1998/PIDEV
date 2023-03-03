@@ -64,13 +64,8 @@ class CompetitionType extends AbstractType
             ])
 
         
-            ->add('genre', ChoiceType::class, [
-                'choices'  => [
-                    'femme' => true,
-                    'homme' => false,
-                    
-                ],
-            ]);
+            
+           ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
