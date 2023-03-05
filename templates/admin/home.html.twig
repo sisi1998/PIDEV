@@ -1,0 +1,17 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}test admin
+{% endblock %}
+
+{% block body %}
+
+	<center>
+		<h1>Edit User:
+			{{admin.nom}}</h1>
+
+
+		<a href="{{ path('app_user_index') }}">Gestion d'utilisateurs</a>
+
+
+	</center>
+{% endblock %}

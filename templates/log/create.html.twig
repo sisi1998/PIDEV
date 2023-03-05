@@ -29,8 +29,9 @@
 	<center>
 		<h1>création du compte</h1>
 		{{include('user/_form.html.twig')}}
-		{# <a href="{{ path('nom_de_la_route') }}"> #}
-		<button>retour</button>
+		{# <a href="{{ path('nom_de_la_route') }}">  #}
+		<button onclick="window.location.href = '{{ path('app_login') }}';">Retour</button>
+
 	</a>
 
 

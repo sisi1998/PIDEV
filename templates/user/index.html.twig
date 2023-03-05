@@ -1,31 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'back.html.twig' %}
 
 {% block title %}User index
 {% endblock %}
 
 {% block body %}
-	<section id="hero" class="d-flex align-items-center">
-
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-					<h1>interface gestion utilisateurs</h1>
-					<h2>liste des utilisateurs</h2>
-					<div
-						class="d-flex justify-content-center justify-content-lg-start">
-						{# <a href="#about" class="btn-get-started scrollto">Get Started</a> #}
-						<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video">{# <i class="bi bi-play-circle"></i> #}
-							{# <span>Watch Video</span> #}
-						</a>
+<div>
+						Admin:
+						{{ admin.nom }}
+						|
+						<a href="{{ path('app_logout') }}">Déconnexion</a>
 					</div>
-				</div>
-				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-					<img src="{{asset('assets/img/users.png')}}" class="img-fluid animated" alt="">
-				</div>
-			</div>
-		</div>
 
-	</section>
 	<center>
 		<h1>User index</h1>
 
@@ -44,6 +29,7 @@
 			</thead>
 			<tbody>
 				{% for user in users %}
+
 					<tr>
 						<td>{{ user.id }}</td>
 						<td>{{ user.nom }}</td>
@@ -57,6 +43,7 @@
 							<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 						</td>
 					</tr>
+
 				{% else %}
 					<tr>
 						<td colspan="8">no records found</td>

@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 
 class CreateType extends AbstractType
@@ -22,15 +24,21 @@ class CreateType extends AbstractType
             ->add('mdp', PasswordType::class)
             ->add('role', ChoiceType::class, [
                 'choices' => [
-                    'Joueur' => 'joueur'
+                    'Joueur' => 'joueur',
+                    'Coach' => 'coach'
                 ],
 
                 'required' => true,
             ])
 
             ->add('date_birth', DateType::class, [
-                'years' => range(date('Y') - 70, date('Y') - 16),
+                'years' => range(date('Y') - 55, date('Y') - 16),
                 'format' => 'dd-MM-yyyy',
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'homepage',
+
             ]);
     }
 

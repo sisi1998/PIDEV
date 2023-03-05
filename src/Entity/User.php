@@ -6,8 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'cet Email est déjà utilisé !')]
 class User
 {
     #[ORM\Id]
@@ -34,6 +37,12 @@ class User
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_birth = null;
+
+    #[ORM\Column]
+    private ?bool $isBlocked = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -75,7 +84,7 @@ class User
 
         return $this;
     }
-    //____________cryptage______________
+
 
     public function getMdp(): ?string
     {
@@ -88,6 +97,13 @@ class User
 
         return $this;
     }
+    //___________Block_cryptage______________
+
+    public function encodePassword(PasswordEncoderInterface $encoder): void
+    {
+        $this->mdp = $encoder->encodePassword($this->mdp, null);
+    }
+    //___________Block_cryptage______________
 
     public function getRole(): ?string
     {
@@ -109,6 +125,30 @@ class User
     public function setDateBirth(\DateTimeInterface $date_birth): self
     {
         $this->date_birth = $date_birth;
+
+        return $this;
+    }
+
+    public function isIsBlocked(): ?bool
+    {
+        return $this->isBlocked;
+    }
+
+    public function setIsBlocked(bool $isBlocked): self
+    {
+        $this->isBlocked = $isBlocked;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -195,6 +195,13 @@ h6 {
   color: #47b2e4;
 }
 
+.error-message {
+  color: red;
+  background-color: #ffe6e6;
+  border: 1px solid #ffcccc;
+  padding: 10px;
+}
+
 .navbar .getstarted,
 .navbar .getstarted:focus {
   padding: 8px 20px;
