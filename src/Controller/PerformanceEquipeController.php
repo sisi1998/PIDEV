@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PerformanceEquipe;
-use App\Form\PerformanceEquipeType;
+use App\Form\PerformanceEquipe1Type;
 use App\Repository\PerformanceEquipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class PerformanceEquipeController extends AbstractController
     public function new(Request $request, PerformanceEquipeRepository $performanceEquipeRepository): Response
     {
         $performanceEquipe = new PerformanceEquipe();
-        $form = $this->createForm(PerformanceEquipeType::class, $performanceEquipe);
+        $form = $this->createForm(PerformanceEquipe1Type::class, $performanceEquipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +51,7 @@ class PerformanceEquipeController extends AbstractController
     #[Route('/{id}/edit', name: 'app_performance_equipe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, PerformanceEquipe $performanceEquipe, PerformanceEquipeRepository $performanceEquipeRepository): Response
     {
-        $form = $this->createForm(PerformanceEquipeType::class, $performanceEquipe);
+        $form = $this->createForm(PerformanceEquipe1Type::class, $performanceEquipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,4 +75,26 @@ class PerformanceEquipeController extends AbstractController
 
         return $this->redirectToRoute('app_performance_equipe_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route("/stats", name:"stats")]
+     
+    public function statistiquess(PerformanceEquipeRepository $evRepo)
+    {
+        // On va chercher le nombre d'annonces publiées par date
+        $performanceEquipe = $evRepo->countByDate();
+
+        $victoires = [];
+        $performanceEquipeCount = [];
+
+        // On "démonte" les données pour les séparer tel qu'attendu par ChartJS
+        foreach ($performanceEquipe as $performanceEquipes) {
+            $victoires[] = $performanceEquipes['victoires'];
+            $performanceEquipeCount[] = $performanceEquipe['count'];
+        }
+
+        return $this->render('evenement/stat.html.twig', [
+
+            'victoires' => json_encode($victoires),
+            'performanceEquipeCount' => json_encode($performanceEquipeCount),
+        ]);
+}
 }

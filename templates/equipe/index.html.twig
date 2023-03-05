@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Equipe index{% endblock %}
+
 {% block body %}
-<section id ="Equipe"></section>
     <h1>Equipe index</h1>
 
-    <table border="3"class="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom_equipe</th>
                 <th>Nb_joueurs</th>
+                <th>Origine</th>
+                <th>logo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,6 +22,8 @@
                 <td>{{ equipe.id }}</td>
                 <td>{{ equipe.nomEquipe }}</td>
                 <td>{{ equipe.nbJoueurs }}</td>
+                <td>{{ equipe.origine }}</td>
+                <td>{{ equipe.logo }}</td>
                 <td>
                     <a href="{{ path('app_equipe_show', {'id': equipe.id}) }}">show</a>
                     <a href="{{ path('app_equipe_edit', {'id': equipe.id}) }}">edit</a>
@@ -26,12 +31,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <a href="{{ path('app_equipe_new') }}">Create new</a>
-    
 {% endblock %}

@@ -38,6 +38,14 @@ class EquipeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findUserByNsc($nom_equipe)
+    {
+        return $this->createQueryBuilder("equipe")
+            ->where('equipe.nom_equipe LIKE :nom')
+            ->setParameter('nom', '%' . $nom_equipe . '%')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Equipe[] Returns an array of Equipe objects

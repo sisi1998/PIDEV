@@ -7,14 +7,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PerformanceEquipeType extends AbstractType
+class PerformanceEquipe1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_performance')
-            ->add('description')
-            ->add('date_mise_a_jour')
+            ->add('victoires')
+            ->add('defaites')
+            ->add('nuls')
+            ->add('but_marque')
+            ->add('but_encaisses')
             ->add('Equipe_Responsable')
         ;
     }

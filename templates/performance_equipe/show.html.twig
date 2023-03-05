@@ -12,16 +12,24 @@
                 <td>{{ performance_equipe.id }}</td>
             </tr>
             <tr>
-                <th>Nom_performance</th>
-                <td>{{ performance_equipe.nomPerformance }}</td>
+                <th>Victoires</th>
+                <td>{{ performance_equipe.victoires }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ performance_equipe.description }}</td>
+                <th>Defaites</th>
+                <td>{{ performance_equipe.defaites }}</td>
             </tr>
             <tr>
-                <th>Date_mise_a_jour</th>
-                <td>{{ performance_equipe.dateMiseAJour ? performance_equipe.dateMiseAJour|date('Y-m-d') : '' }}</td>
+                <th>Nuls</th>
+                <td>{{ performance_equipe.nuls }}</td>
+            </tr>
+            <tr>
+                <th>But_marque</th>
+                <td>{{ performance_equipe.butMarque }}</td>
+            </tr>
+            <tr>
+                <th>But_encaisses</th>
+                <td>{{ performance_equipe.butEncaisses }}</td>
             </tr>
         </tbody>
     </table>

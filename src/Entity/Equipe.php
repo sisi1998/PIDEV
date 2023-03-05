@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+#[UniqueEntity(fields: ['nom_equipe'], message: 'nom déjà utilisé')]
 
 #[ORM\Entity(repositoryClass: EquipeRepository::class)]
 class Equipe
@@ -24,6 +26,13 @@ class Equipe
     #[Assert\Range(min:11,max:30,notInRangeMessage:"le nombre de joueurs doit etre compris entre 11 et 30")]
     private ?int $nb_joueurs = null;
 
+    #[ORM\Column(type: 'string')]
+    private $logo;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"ce champ doit ètre rempli ")]
+    private ?string $origine = null;
+
     #[ORM\OneToMany(mappedBy: 'Equipe_Responsable', targetEntity: PerformanceEquipe::class)]
     private Collection $date_mise_a_jour;
 
@@ -39,7 +48,8 @@ class Equipe
 
     public function getNomEquipe(): ?string
     {
-        return $this->nom_equipe;
+        return $this->nom_equipe
+        ;
     }
 
     public function setNomEquipe(string $nom_equipe): self
@@ -60,7 +70,29 @@ class Equipe
 
         return $this;
     }
+    public function getLogo()
+    {
+        return $this->logo;
+    }
 
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+    public function getOrigine(): ?string
+    {
+        return $this->origine;
+    }
+
+    public function setOrigine(string $origine)
+    {
+        $this->origine = $origine;
+
+        return $this;
+    }
+   
     /**
      * @return Collection<int, PerformanceEquipe>
      */
@@ -90,4 +122,8 @@ class Equipe
 
         return $this;
     }
+
+   
+
+    
 }

@@ -9,9 +9,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom_performance</th>
-                <th>Description</th>
-                <th>Date_mise_a_jour</th>
+                <th>Victoires</th>
+                <th>Defaites</th>
+                <th>Nuls</th>
+                <th>But_marque</th>
+                <th>But_encaisses</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,9 +21,11 @@
         {% for performance_equipe in performance_equipes %}
             <tr>
                 <td>{{ performance_equipe.id }}</td>
-                <td>{{ performance_equipe.nomPerformance }}</td>
-                <td>{{ performance_equipe.description }}</td>
-                <td>{{ performance_equipe.dateMiseAJour ? performance_equipe.dateMiseAJour|date('Y-m-d') : '' }}</td>
+                <td>{{ performance_equipe.victoires }}</td>
+                <td>{{ performance_equipe.defaites }}</td>
+                <td>{{ performance_equipe.nuls }}</td>
+                <td>{{ performance_equipe.butMarque }}</td>
+                <td>{{ performance_equipe.butEncaisses }}</td>
                 <td>
                     <a href="{{ path('app_performance_equipe_show', {'id': performance_equipe.id}) }}">show</a>
                     <a href="{{ path('app_performance_equipe_edit', {'id': performance_equipe.id}) }}">edit</a>
@@ -29,7 +33,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
