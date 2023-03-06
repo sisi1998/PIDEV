@@ -1,0 +1,8 @@
+framework:
+    mailer:
+        dsn: '%env(MAILER_DSN)%'
+        envelope:
+            sender: 'Ghada.Omri@esprit.tn'
+        headers:
+            From: "Ghada <Ghada.Omri@esprit.tn>"
+            X-Custom-Header: "foobar"
