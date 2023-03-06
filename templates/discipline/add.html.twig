@@ -1,0 +1,28 @@
+{% extends 'baseback.html.twig' %}
+{% block title %}Ajouter {% endblock %}
+{% block body %}
+{{ form_start(formD) }}
+<table>
+    <tr>
+               
+        <td>{{form_label(formD.Absence,"") }} </td> 
+        <td>{{form_widget(formD.Absence) }} </td> 
+		<td>{{form_errors(formD.Absence) }} </td> 
+    </tr>  
+    <tr>
+          
+        <td>{{form_label(formD.Note,"") }} </td> 
+        <td>{{form_widget(formD.Note) }} </td> 
+		<td>{{form_errors(formD.Note) }} </td> 
+    </tr> 
+    
+</table>
+    <tr>
+              
+        <td>{{form_widget(formD) }} </td> 
+				
+    </tr>  
+
+
+{{ form_end(formD) }}
+{% endblock %}

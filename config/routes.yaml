@@ -1,0 +1,36 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_arena:
+     path: /arena
+     controller: App\Controller\ArenaController::index
+app_createArenaa:
+     path: /createArenaa
+     controller: App\Controller\ArenaController::createArenaa
+showarena:
+     path: /showarena
+     controller: App\Controller\ArenaController::showarena
+updateArena:
+     path: /updateArena/{id}
+     controller: App\Controller\ArenaController::updateC
+deleteArena:
+     path: /deleteArena/{id}
+     controller: App\Controller\ArenaController::delete
+createCours:
+     path: /createCours
+     controller: App\Controller\CoursController::createCours
+     
+showCours:
+     path: /showCours
+     controller: App\Controller\CoursController::showCours
+    
+suividiscipline:
+     path: /suividiscipline
+     controller: App\Controller\DisciplineController::suiviD
+    
+showD:
+     path: /showD
+     controller: App\Controller\DisciplineController::showD
+app_updateCours:
+     path: /updateCours/{id}
+     controller: App\Controller\CoursController::updateC
