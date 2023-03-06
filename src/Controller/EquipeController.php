@@ -21,10 +21,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 
-
-
-
-
 #[Route('/equipe')]
 class EquipeController extends AbstractController
 {

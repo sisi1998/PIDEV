@@ -33,13 +33,12 @@ class Equipe
     #[Assert\NotBlank(message:"ce champ doit ètre rempli ")]
     private ?string $origine = null;
 
-    #[ORM\OneToMany(mappedBy: 'Equipe_Responsable', targetEntity: PerformanceEquipe::class)]
-    private Collection $date_mise_a_jour;
+    #[ORM\OneToOne(inversedBy: 'equipeP', cascade: ['persist', 'remove'])]
+    private ?PerformanceEquipe $performanceE = null;
 
-    public function __construct()
-    {
-        $this->date_mise_a_jour = new ArrayCollection();
-    }
+   
+
+  
 
     public function getId(): ?int
     {
@@ -93,37 +92,26 @@ class Equipe
         return $this;
     }
    
-    /**
-     * @return Collection<int, PerformanceEquipe>
-     */
-    public function getDateMiseAJour(): Collection
-    {
-        return $this->date_mise_a_jour;
-    }
-
-    public function addDateMiseAJour(PerformanceEquipe $dateMiseAJour): self
-    {
-        if (!$this->date_mise_a_jour->contains($dateMiseAJour)) {
-            $this->date_mise_a_jour->add($dateMiseAJour);
-            $dateMiseAJour->setEquipeResponsable($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDateMiseAJour(PerformanceEquipe $dateMiseAJour): self
-    {
-        if ($this->date_mise_a_jour->removeElement($dateMiseAJour)) {
-            // set the owning side to null (unless already changed)
-            if ($dateMiseAJour->getEquipeResponsable() === $this) {
-                $dateMiseAJour->setEquipeResponsable(null);
-            }
-        }
-
-        return $this;
-    }
-
+   
+   
    
 
+    public function __toString(): string
+    {
+        return $this->nom_equipe; 
+
     
+}
+
+    public function getPerformanceE(): ?PerformanceEquipe
+    {
+        return $this->performanceE;
+    }
+
+    public function setPerformanceE(?PerformanceEquipe $performanceE): self
+    {
+        $this->performanceE = $performanceE;
+
+        return $this;
+    }
 }

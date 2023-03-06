@@ -40,6 +40,8 @@ class PerformanceEquipeController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/{id}', name: 'app_performance_equipe_show', methods: ['GET'])]
     public function show(PerformanceEquipe $performanceEquipe): Response
     {
@@ -79,8 +81,8 @@ class PerformanceEquipeController extends AbstractController
      
     public function statistiquess(PerformanceEquipeRepository $evRepo)
     {
-        // On va chercher le nombre d'annonces publiées par date
-        $performanceEquipe = $evRepo->countByDate();
+        // On va chercher le nombre de performance  par victoires
+        $performanceEquipe = $evRepo->countByVictoire();
 
         $victoires = [];
         $performanceEquipeCount = [];
@@ -91,7 +93,7 @@ class PerformanceEquipeController extends AbstractController
             $performanceEquipeCount[] = $performanceEquipe['count'];
         }
 
-        return $this->render('evenement/stat.html.twig', [
+        return $this->render('performance_equipe/stat.html.twig', [
 
             'victoires' => json_encode($victoires),
             'performanceEquipeCount' => json_encode($performanceEquipeCount),

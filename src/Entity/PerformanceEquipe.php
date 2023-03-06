@@ -16,9 +16,7 @@ class PerformanceEquipe
     private ?int $id = null;
 
 
-    #[ORM\OneToOne(inversedBy: 'Equipe_Responsable')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Equipe $Equipe_Responsable = null;
+   
 
     #[ORM\Column(nullable: true)]
     #[Assert\Range(min:0,max:30,notInRangeMessage:"le nombre de victoires doit etre compris entre 0 et 30")]
@@ -40,22 +38,17 @@ class PerformanceEquipe
     #[Assert\Range(min:0,max:30,notInRangeMessage:"le nombre de but encaisses doit etre compris entre 0 et 30")]
     private ?int $but_encaisses = null ;
 
+    #[ORM\OneToOne(mappedBy: 'performanceE', cascade: ['persist', 'remove'])]
+    private ?Equipe $equipeP = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEquipeResponsable(): ?Equipe
-    {
-        return $this->Equipe_Responsable;
-    }
+   
 
-    public function setEquipeResponsable(?Equipe $Equipe_Responsable): self
-    {
-        $this->Equipe_Responsable = $Equipe_Responsable;
-
-        return $this;
-    }
+ 
     public function getVictoires(): ?int
     {
         return $this->victoires;
@@ -112,6 +105,28 @@ class PerformanceEquipe
     public function setButEncaisses(?int $but_encaisses): self
     {
         $this->but_encaisses = $but_encaisses;
+
+        return $this;
+    }
+
+    public function getEquipeP(): ?Equipe
+    {
+        return $this->equipeP;
+    }
+
+    public function setEquipeP(?Equipe $equipeP): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($equipeP === null && $this->equipeP !== null) {
+            $this->equipeP->setPerformanceE(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($equipeP !== null && $equipeP->getPerformanceE() !== $this) {
+            $equipeP->setPerformanceE($this);
+        }
+
+        $this->equipeP = $equipeP;
 
         return $this;
     }
