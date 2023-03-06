@@ -16,6 +16,11 @@ class AdminController extends AbstractController
     public function index(Request $request): Response
     {
         $admin = $request->getSession()->get('user');
-        return $this->render('admin/home.html.twig', ['admin' => $admin]);
+        if ($admin->getRole() === "admin") {
+
+            return $this->render('admin/home.html.twig', ['admin' => $admin]);
+        } else {
+            return $this->redirectToRoute('app_my_profile', [], Response::HTTP_SEE_OTHER);
+        }
     }
 }

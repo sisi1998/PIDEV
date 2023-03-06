@@ -391,7 +391,7 @@
 												<li><a href="#"><i class="ti-settings"></i><span>Setting</span></a></li>
 
 												<li><a href="#"><i class="ti-lock"></i><span>Lock Screen</span></a></li>
-												<li><a href="{{path('app_logout')}}"><i class="ti-power-off"></i><span>Logout</span></a></li>
+												<li><ahref="{{path('app_logout')}}"><i class="ti-power-off"></i><span>Logout</span></a></li>
 											</ul>
 										</div>
 									</div>
@@ -425,7 +425,9 @@
 										<li class="breadcrumb-item">
 											<a href="#">Dashboard</a>
 										</li>
-										<li class="breadcrumb-item active">Home</li>
+										<li class="breadcrumb-item active">
+											<a href="{{ path('app_admin') }}">Home</a>
+										</li>
 									</ol>
 								</div>
 							</div>

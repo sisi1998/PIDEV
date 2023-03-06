@@ -5,14 +5,16 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 #[Route('/user')]
@@ -43,6 +45,53 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_my_profile', [], Response::HTTP_SEE_OTHER);
         }
     }
+
+    //api JSON lister:
+    #[Route('/apilist', name: 'api_user_list', methods: ['GET'])]
+    public function listUsers(Request $request, SerializerInterface $serializer): JsonResponse
+    {
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        if (empty($users)) {
+            return new JsonResponse(['message' => 'No user found.'], Response::HTTP_OK);
+        }
+
+        $data = [];
+
+        foreach ($users as $user) {
+            $data[] = [
+                'id' => $user->getId(),
+                'nom' => $user->getNom(),
+                'prenom' => $user->getPrenom(),
+                'role' => $user->getRole(),
+                //'domaine' => $user->getDomaine(),
+            ];
+        }
+
+
+
+
+        // $json = $serializer->serialize($data, 'json');
+        $json = $serializer->serialize($data, 'json', ['groups' => 'read', 'max_depth' => 1]);
+        dd($json);
+        return new JsonResponse($json, Response::HTTP_OK, [], true);
+    }
+
+
+    //api JSON ajouter:
+    #[Route('/apiadd', name: 'api_user_add')]
+    public function adduser(Request $request, SerializerInterface $serializer, EntityManagerInterface $em): JsonResponse
+    {
+        $content = $request->getContent();
+        $data = $serializer->deserialize($content, User::class, 'json');
+        $em->persist($data);
+        $em->flush();
+
+        return new Response('User ajouté avec succées');
+    }
+
+
+
 
 
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
@@ -101,6 +150,7 @@ class UserController extends AbstractController
             $password = $form->get('mdp')->getData();
             $encodedPassword = password_hash($password, PASSWORD_DEFAULT);
             $user->setMdp($encodedPassword);
+            $user->setResetToken("");
 
             $userRepository->save($user, true);
 
@@ -165,6 +215,9 @@ class UserController extends AbstractController
                 // instead of its contents
                 $user->setImage($newFilename);
             }
+            $password = $form->get('mdp')->getData();
+            $encodedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $user->setMdp($encodedPassword);
 
             $userRepository->save($user, true);
 

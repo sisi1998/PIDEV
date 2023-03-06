@@ -44,6 +44,9 @@ class User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $resetToken = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,10 +102,15 @@ class User
     }
     //___________Block_cryptage______________
 
-    public function encodePassword(PasswordEncoderInterface $encoder): void
+    public function encodePassword(PasswordEncoderInterface $encoder, String $password): void
     {
-        $this->mdp = $encoder->encodePassword($this->mdp, null);
+        $this->mdp = $encoder->encodePassword($password, "2y");
     }
+    public function isValid(String $encoded, PasswordEncoderInterface $encoder): bool
+    {
+        return $encoder->isPasswordValid($this->mdp, $encoded, "2y");
+    }
+
     //___________Block_cryptage______________
 
     public function getRole(): ?string
@@ -149,6 +157,18 @@ class User
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }
