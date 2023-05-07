@@ -1,0 +1,13 @@
+{% extends 'base_mo.html.twig' %}
+
+{% block title %}Edit PerformanceEquipe{% endblock %}
+
+{% block body %}
+    <h1>Edit PerformanceEquipe</h1>
+
+    {{ include('performance_equipe/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_performance_equipe_index') }}">back to list</a>
+
+    {{ include('performance_equipe/_delete_form.html.twig') }}
+{% endblock %}

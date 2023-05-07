@@ -1,8 +1,8 @@
 
-	{% extends "baseFO.html.twig" %}
+	{% extends "baseFOcom.html.twig" %}
 {% block content %}
-<link href="/css/contact.css" rel="stylesheet">
- <link href="/css/csstableper.css" rel="stylesheet">
+<link href="/cssSW/contact.css" rel="stylesheet">
+ <link href="/cssSW/csstableper.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -10,34 +10,52 @@
 
 <div class="container" style='background-color: white , transform: translate(0,30%)'>
 
-<div class="album py-5 bg-light">
-                        <div class="container">
-                            <div class="sidebar-search" >
-                                <div class="input-group custom-search-form">
-                                    <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 1180px;background: white">
-                                </div>
-                                <br>
-                                <!-- /input-group -->
-                                <ul class="nav" id="side-menu">
-                                    <li>
-                                        <a href="#"> <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-second-level" id="entitiesNav">
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
+<script src="{{ asset('https://code.jquery.com/jquery-3.5.1.min.js') }}"></script>
+
+<script>
+    $(document).ready(function () {
+        // Update the event listener to watch for changes on both input fields
+        $("#searchCompetition").keyup(function (e) {
+            // Get the value of the competition input field
+            var competitionValue = $("#searchCompetition").val();
+
+            $.ajax({
+                url: "{{ path('ajax_search') }}",
+                type: 'GET',
+                data: {
+                    // Send only the competition name to the server
+                    'competition': competitionValue
+                },
+                success: function (resultats) {
+                    if (resultats) {
+                        $('#t tbody#searchtab').empty();
+                        $.each(resultats, function (i, obj) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#searchtab').append('<tr><td> ' + obj.id + '</td><td> ' + obj.Buts + '</td><td> ' + obj.Rouge + '</td><td> ' + obj.Jaune );
+                        });
+                    } else {
+                        $('#t tbody#all').show();
+                        $('#t tbody#searchtab').empty();
+                        $('#t tbody#searchtab').fadeIn('fast');
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+            
             </div>
             <div class="row d-flex" id="containerr">
-                <div id="search"></div>
+        
 
 
     <div class="row col-md-6 col-md-offset-2 custyle">
 
 
-    <table class="table table-striped custab">
+    <table class="table table-striped custab " id="t">
     <thead>
    
             <th>joueur</th>
@@ -57,6 +75,7 @@
        
         </tr>
     </thead>
+	<tbody id="all">
       {% for per in performances %}
              <tr>
       <td>{{ per.joueurP.getNom() }}</td>
@@ -78,19 +97,91 @@
                 
     {% endfor %}
 
-            
+            </tbody>
+		<tbody id="searchtab"></tbody>
     </table>
-   
-
+ 
 
     </div>
+	<div style="margin:auto; padding:5px; margin-left: 6%; font-size: 14px; display:flex; flex-wrap:wrap;">
+   <p><h3>Mins:</h3> Minutes jouées <h3> Buts:</h3>Total Buts <h3>P.Décisives:</h3> Total Passes décisives</p>
+   <p><h3>Jau:</h3> Carton jaune <h3> Rou:</h3>  Carton rouge <h3>  TpM: Tirs par match</h3></p>
+   <p><h3>JPR%: </h3> Taux de passes réussies <h3>AériensGagnés: </h3> Duels aériens gagnés par match <h3>HdM: </h3> Homme du match</p>
 </div>
 
 
+</div>
 
-<br>
-<br>
-<br>
+	<!--************************************
+					Statistics Start
+			*************************************-->
+			<section class="tg-main-section tg-haslayout tg-bgdark">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="tg-statistics">
+								<div class="tg-statistic tg-goals">
+									<span class="tg-icon icon-Icon1"></span>
+									<h2><span class="tg-statistic-count" data-from="0" data-to={{ but}} data-speed="8000" data-refresh-interval="50">2700</span></h2>
+									<h3>Buts</h3>
+								</div>
+								<div class="tg-statistic tg-activeplayers">
+									<span class="tg-icon icon-Icon2"></span>
+									<h2><span class="tg-statistic-count" data-from="0" data-to={{ ag}} data-speed="8000" data-refresh-interval="50">1673</span></h2>
+									<h3>AériensGagnés</h3>
+								</div>
+								<div class="tg-statistic tg-activeteams">
+									<span class="tg-icon icon-Icon3"></span>
+									<h2><span class="tg-statistic-count" data-from="0" data-to={{ pd}} data-speed="8000" data-refresh-interval="50">236</span></h2>
+									<h3>Passes décisives</h3>
+								</div>
+								<div class="tg-statistic tg-earnedawards">
+									<span class="tg-icon icon-Icon4"></span>
+									<h2><span class="tg-statistic-count" data-from="0" data-to={{tpm}} data-speed="8000" data-refresh-interval="50">197</span></h2>
+									<h3>Tirs par match</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--************************************
+					Statistics End
+			*************************************-->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<section style=' margin: auto; width:100%; padding: 10px'>
+ 
+<canvas id="myChart1" style="width:100%;max-width:600px;  margin-left: auto;
+    margin-right: auto;"></canvas>
+
+
+<script>
+var data = {{ data|json_encode()|raw }};
+
+ var xValues = ["Buts","Carton Rouge","Carton Jaune","Passes décisives","AériensGagnés","Tirs par match"];
+var yValues = Object.values(data);
+var barColors = ["red", "green","blue","orange","brown","orange"];
+
+new Chart("myChart1", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Nos Statiques des Performances des joueurs"
+    }
+  }
+});
+</script>
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -99,40 +190,147 @@
 <!------ Include the above in your HEAD tag ---------->
 
 
-<div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Click Me</button></div>
 
 
+
+
+
+
+
+<!--************************************
+				Home Slider Start
+		*************************************-->
+		<div class="tg-sliderbox">
+			<div class="tg-imglayer">
+				<img src="/imgSW/imgW/bg-pattran.png" alt="image desctription">
+			</div>
+			<div id="tg-home-slider" class="tg-home-slider tg-haslayout">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="/imgSW/imgW/slider/img-01.png" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+									
+					
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="/imgSW/imgW/slider/img-01.png" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="/imgSW/imgW/slider/img-01.png" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+										
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tg-btn-next">
+					
+					<span class="fa fa-angle-down"></span>
+				</div>
+				<div class="tg-btn-prev">
+					
+					<span class="fa fa-angle-down"></span>
+				</div>
+			</div>
+		</div>
+		<!--************************************
+				Home Slider End
+		*************************************-->
+
+
+	<!--************************************
+					Top Rated Player Start
+			*************************************-->
+			<section class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="tg-section-name">
+						<h2>Nos joueurs</h2>
+					</div>
+					<div class="col-sm-11 col-xs-11 pull-right">
+						<div class="row">
+							<div class="tg-topratedplayer tg-haslayout">
+								<div class="row">
+									<div class=" margin-left: auto;
+    margin-right: auto;">
+										<div id="tg-playerscrollbar" class="tg-players tg-playerscrollbar">
+                                          {% for per in players %}
+											<div class="tg-player">
+												<div class="col-sm-6 col-xs-6 pull-right">
+													<div class="tg-playcontent">
+														<a class="tg-theme-tag" href="#">{{ per.id}}</a>
+														<h3><a href="#">{{ per.Nom}}{{ per.Prenom}}</td></a></h3>
+		
+														<div class="tg-description">
+															<p>		{{ per.equipeP.Nom}}</p>
+														</div>
+				
+													</div>
+												</div>
+												<div class="col-sm-6 col-xs-6">
+													<figure>
+														<a href="{{ path('showPerformance',{'id':per.id}) }}">
+															{# <img src="/imgSW/imgW/player/img-01.png" alt="image description"> #}
+															<img src="{{ asset('/uploads/user/' ~ per.getImage()) }}" width="300px" height="200px" alt="image description"/>
+
+														</a>
+													</figure>
+												</div>
+											</div>
+                                                            
+    {% endfor %}
+										
+											
+									</div>
+									<div class="col-md-5 col-sm-12 col-xs-12">
+										<div class="tg-contentbox">
+										
+											</div>
+										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
 <!-- line modal -->
 <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" style="margin-left: 10px;">
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			<h3 class="modal-title" id="lineModalLabel">Contacter l'admin </h3>
+			<h3 class="modal-title" id="lineModalLabel"> Vos performances </h3>
 		</div>
 		<div class="modal-body">
 			
-            <!-- content goes here -->
-			{{ form_start(form) }}
-              <div class="form-group">
-           {{ form_widget(form.title, {'attr':{'class':'form-control','id':'exampleInputPassword1'}})}}
-              </div>
-              <div class="form-group">
-
-              {{ form_row(form.email,{'attr':{'class':'form-control','id':'exampleInputEmail1' }}) }}
-              </div>
-            {{ form_row(form.message,{'attr':{'class':'form-control','id':'exampleInputEmail1' }}) }}
-			
-
-              <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Example block-level help text here.</p>
-              </div>
-              
-              <button type="submit" class="btn btn-default">Submit</button>
-            {{ form_end(form) }}
-
+          <h1>hh</h1>
+             
 		</div>
 		<div class="modal-footer">
 			<div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -152,88 +350,34 @@
 </div>
 
 
+   
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- jQuery is necessary -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            var searchRequest = null;
-            $("#search").keyup(function() {
-                var minlength = 3;
-                var that = this;
-                var value = $(this).val(); // elyyktbo fi input 7atito fi var var
-                var entitySelector = $("#entitiesNav").html('');
-                if (value.length >= minlength ) {
-                    if (searchRequest != null)
-                        searchRequest.abort();
-                    searchRequest = $.ajax({
-                        type: "GET",
-                        url: "{{ path('ajax_search') }}",
-                        data: {
-                            'q' : value
-                        },
-                        dataType: "text",
-                        success: function(msg){
-                            //we need to check if the value is the same
-                            if (value==$(that).val()) {
-                                var result = JSON.parse(msg);
-                                $.each(result, function(key, arr) {
-                                    $.each(arr, function(id, value) {
-                                        if (key == 'comp') {
-                                            if (id != 'error') {
-                                                x= document.getElementById("containerr");
-                                                entitySelector.append('<div style="display: table;width:100%;padding: 15px"><span style="text-align: center">'+value[]+'</span><br/><a href="/show_products_cat/'+id+'"></a></div>');
-                                            } else {
-                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
-                                            }
-                                        }
-                                    });
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function(){
-            $(".btn1").click(function(){
-                $("h1").slideUp();
-            });
-            $(".btn2").click(function(){
-                $("h1").slideDown();
-            });
-            $(".btn3").click(function(){
-                $("h1").slideToggle();
-            });
-        });
-    </script>
-
-
-
+<script src="/jsSW/jsW/vendor/jquery-library.js"></script>
+	<script src="/jsSW/jsW/vendor/bootstrap.min.js"></script>
+	<script src="/jsSW/jsW/customScrollbar.min.js"></script>
+	<script src="/jsSW/jsW/owl.carousel.js"></script>
+	<script src="/jsSW/jsW/isotope.pkgd.js"></script>
+	<script src="/jsSW/jsW/prettyPhoto.js"></script>
+	<script src="/jsSW/jsW/swiper.min.js"></script>
+	<script src="/jsSW/jsW/jquery-ui.js"></script>
+	<script src="/jsSW/jsW/countTo.js"></script>
+	<script src="/jsSW/jsW/appear.js"></script>
+	<script src="/jsSW/jsW/main.js"></script>
+<link rel="stylesheet" href="/cssSW/cssW/bootstrap.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/normalize.css">
+	<link rel="stylesheet" href="/cssSW/cssW/font-awesome.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/transitions.css">
+	<link rel="stylesheet" href="/cssSW/cssW/prettyPhoto.css">
+	<link rel="stylesheet" href="/cssSW/cssW/swiper.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/jquery-ui.css">
+	<link rel="stylesheet" href="/cssSW/cssW/animate.css">
+	<link rel="stylesheet" href="/cssSW/cssW/owl.theme.css">
+	<link rel="stylesheet" href="/cssSW/cssW/owl.carousel.css">
+	<link rel="stylesheet" href="/cssSW/cssW/customScrollbar.css">
+	<link rel="stylesheet" href="/cssSW/cssW/icomoon.css">
+	<link rel="stylesheet" href="/cssSW/cssW/main.css">
+	<link rel="stylesheet" href="/cssSW/cssW/color.css">
+	<link rel="stylesheet" href="/cssSW/cssW/responsive.css">
+	<script src="/jsSW/jsW/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
     {% endblock %}

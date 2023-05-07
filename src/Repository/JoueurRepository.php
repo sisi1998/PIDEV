@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Joueur;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,7 +21,7 @@ class JoueurRepository extends ServiceEntityRepository
         parent::__construct($registry, Joueur::class);
     }
 
-    public function save(Joueur $entity, bool $flush = false): void
+    public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class JoueurRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Joueur $entity, bool $flush = false): void
+    public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

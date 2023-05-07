@@ -1,4 +1,4 @@
-{% extends "baseBo.html.twig" %}
+{% extends "baseBOcom.html.twig" %}
 {% block content %}
 	<html lang="en">
 		<link href="/test/ff.css" rel="stylesheet">
@@ -11,8 +11,8 @@
 
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-			<link rel="stylesheet" href="/css/cssCA/style.css">
-			<link rel="stylesheet" href="/css/cssCA/bootstrap-datetimepicker.min.css">
+			<link rel="stylesheet" href="/cssSW/cssCA/style.css">
+			<link rel="stylesheet" href="/cssSW/cssCA/bootstrap-datetimepicker.min.css">
 			<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 			<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -66,7 +66,11 @@
 				{{ form_widget(form.winner,{'attr':{'class':'form-control','style':'width: 290px;margin-left: 45px;border-radius: 30px; width: 100 px;' } }) }}
 				{{ form_errors(form.winner) }}
 			</div>
-
+<div style="display: flex; flex-direction: column;">
+				{{form_label(form.image,"image")}}
+				{{ form_widget(form.image,{'attr':{'class':'form-control','style':'width: 290px;margin-left: 45px;border-radius: 30px; width: 100 px;' } }) }}
+				{{ form_errors(form.image) }}
+			</div>
 			<br>
 			<button type="submit" class="btn btn-primary" style="width: 150px; margin-left: auto; margin-right: auto">Create!</button>
 			{{ form_end(form) }}
@@ -79,28 +83,32 @@
 							<div class="card-header border-0">
 								<h3 class="mb-0">Liste d'equipes</h3>
 							</div>
+								{% for eq in equipes %}
 							<div class="table-responsive">
 								<table class="table align-items-center table-flush">
 									<thead class="thead-light">
 										<tr>
-											<th scope="col">Equipes</th>
-											<th scope="col">Id</th>
+											<th scope="col">{{eq.Nom}}</th>
+											<th scope="col">Id {{eq.id}}</th>
+															<td><img src="{{ asset('/uploads/equipe/' ~ eq.getLogo()) }}" width="40px" height="40px" alt=""/></td>
+
 										</tr>
+										{% endfor %}
 									</thead>
-									<tbody class="equipeGridContent">
+									<body class="equipeGridContent">
 
 										<tr></tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
-
-						<script src="/js/jsCA/jquery.min.js"></script>
-						<script src="/js/jsCA/popper.js"></script>
-						<script src="/js/jsCA/bootstrap.min.js"></script>
-						<script src="/js/jsCA/moment-with-locales.min.js"></script>
-						<script src="/js/jsCA/bootstrap-datetimepicker.min.js"></script>
-						<script src="/js/jsCA/main.js"></script>
+	
+				<script src="/jsSW/jsCA/jquery.min.js"></script>
+						<script src="/jsSW/jsCA/popper.js"></script>
+						<script src="/jsSW/jsCA/bootstrap.min.js"></script>
+						<script src="/jsSW/jsCA/moment-with-locales.min.js"></script>
+						<script src="/jsSW/jsCA/bootstrap-datetimepicker.min.js"></script>
+						<script src="/jsSW/jsCA/main.js"></script>
 						<script src="/js/tableHandler/tableHandler.js"></script>
 						<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/jquery/dist/jquery.min.js"></script>
 						<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

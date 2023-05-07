@@ -13,24 +13,25 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 #[UniqueEntity(
-    fields :['Date','arena'],
+    fields: ['Date', 'arena'],
     errorPath: 'Nom',
-    message : 'Une competition existe déjà avec cette date et arena')]
- #[ORM\Entity(repositoryClass: CompetitionRepository::class)]
- 
+    message: 'Une competition existe déjà avec cette date et arena'
+)]
+#[ORM\Entity(repositoryClass: CompetitionRepository::class)]
+
 class Competition
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups("competitions")]
+    #[Groups("competition")]
     private ?int $id = null;
 
 
-    #[Groups("competitions")]
+    #[Groups("competition")]
 
-    #[Assert\NotBlank(message:"la Date est obligatoire ")]
-    #[ORM\Column(length: 255,nullable :true)]
+    #[Assert\NotBlank(message: "la Date est obligatoire ")]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Date = null;
 
 
@@ -38,46 +39,49 @@ class Competition
     #[ORM\JoinColumn(nullable: true)]
     private ?Arena $arena = null;
 
-    #[Assert\NotBlank(message:"les equipes sont obligatoires ")]
+    /**
+     * @Assert\Count(
+     *      min = 2,
+     *      max = 2,
+     *      minMessage = "vous devez selectionner  {{ 2}} Equipes.",
+     *      maxMessage = "vous devez selectionner  {{ 2}} Equipes."
+     * )
+     */
     #[ORM\JoinColumn(nullable: true)]
-    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'competitions')]
-    private Collection $equipes;
-
-   #[Groups("competitions")]
-    #[ORM\Column(length: 255,nullable :true)]
+    #[Groups("competition")]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $etat = null;
 
 
 
 
-    #[Groups("competitions")]
+    #[Groups("competition")]
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Equipe $winner = null;
 
-    
-    
-    #[Groups("competitions")]
-    #[ORM\Column(length: 255,nullable :true)]
-    private ?String $genre = null;
-    
-    
-    #[Groups("competitions")]
+
+
+
+    #[Groups("competition")]
+    #[Assert\NotBlank(message: "le nom est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
-    private ?String $image = null;
-
-
-    #[Groups("competitions")]
-    #[Assert\NotBlank(message:"le nomest obligatoire ")]
-    #[ORM\Column(length: 255,nullable :true)]
     private ?string $Nom = null;
 
 
-    
-    #[ORM\OneToMany(targetEntity: PerformanceC::class, mappedBy: 'competitionP', cascade: [ 'remove'])]
+
+    #[ORM\OneToMany(targetEntity: PerformanceC::class, mappedBy: 'competitionP', cascade: ['persist', 'remove'])]
     private Collection $performanceCs;
 
-    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
+
+
+
+    #[Assert\NotBlank(message: "les equipes sont obligatoires ")]
+    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'competitions')]
+    private Collection $equipes;
     public function __construct()
     {
         $this->equipes = new ArrayCollection();
@@ -88,18 +92,8 @@ class Competition
     {
         return $this->id;
     }
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
 
 
-    public function setGenre(?string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
 
 
     public function getDate(): ?string
@@ -139,7 +133,7 @@ class Competition
     }
 
 
-   
+
 
 
 
@@ -160,17 +154,8 @@ class Competition
     }
 
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
-        return $this;
-    }
 
 
     public function getEtat(): ?string
@@ -238,7 +223,20 @@ class Competition
 
         return $this;
     }
-    
 
 
+
+
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }

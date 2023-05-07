@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>Go Academy</title>
+		<meta content="" name="description">
+		<meta
+		content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assetsMagasin/img/favicon.png" rel="icon">
+		<link
+		href="assetsMagasin/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="{{asset('assetsMagasin/vendor/aos/aos.css')}}" rel="stylesheet">
+		<link href="{{asset('assetsMagasin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+		<link href="{{asset('assetsMagasin/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+		<link href="{{asset('assetsMagasin/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+		<link href="{{asset('assetsMagasin/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+		<link href="{{asset('assetsMagasin/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+		<link
+		href="{{asset('assetsMagasin/vendor/swiper/swiper-bundle.min.css')}} " rel="stylesheet">
+
+		<!-- Template Main CSS File -->
+		<link
+		href="assetsMagasin/css/style.css" rel="stylesheet">
+
+	<!-- =======================================================
+	  * Template Name: Arsha - v4.10.0
+	  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+	  * Author: BootstrapMade.com
+	  * License: https://bootstrapmade.com/license/
+	  ======================================================== -->
+	</head>
+
+	<body>
+
+		<style>
+
+
+			.cancelbtn {
+				float: left;
+				width: 50%;
+			}
+
+			/* Add a color to the cancel button */
+			.cancelbtn {
+				background-color: #ccc;
+				color: black;
+			}
+
+			/* Add padding and center-align text to the container */
+			.container {
+				padding: 16px;
+				text-align: center;
+			}
+
+			/* The Modal (background) */
+			.modal {
+				display: none; /* Hidden by default */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Sit on top */
+				left: 0;
+				top: 0;
+				width: 100%; /* Full width */
+				height: 100%; /* Full height */
+				overflow: auto; /* Enable scroll if needed */
+				background-color: #8080806b;
+				padding-top: 50px;
+			}
+
+			/* Modal Content/Box */
+			.modal-content {
+				top: 350px;
+				background-color: #fefefe;
+				margin: 5% auto 15%; /* 5% from the top, 15% from the bottom and centered */
+				border: 1px solid #888;
+				width: 50%; /* Could be more or less, depending on screen size */
+			}
+
+			/* Style the horizontal ruler */
+			hr {
+				border: 1px solid #f1f1f1;
+				margin-bottom: 25px;
+			}
+
+			/* The Modal Close Button (x) */
+			.close {
+				position: absolute;
+				right: 35px;
+				top: 15px;
+				font-size: 40px;
+				font-weight: bold;
+				color: red;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: #f44336;
+				cursor: pointer;
+			}
+
+			/* Clear floats */
+			.clearfix::after {
+				content: "";
+				clear: both;
+				display: table;
+			}
+
+			/* Change styles for cancel button and delete button on extra small screens */
+			@media screen and(max-width: 300px) {
+				.cancelbtn,
+				.deletebtn {
+					width: 100%;
+				}
+			}
+		</style>
+
+
+		<!-- ======= Portfolio Section ======= -->
+		<section id="portfolio" class="portfolio">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Nutritions</h2>
+					<p>nos articles
+					</p>
+				</div>
+
+
+				<div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+					{% for n in nutritions %}
+						<div onclick="openModal({{ n.id }}, {{n.stock}})" class="col-lg-4 col-md-6 portfolio-item filter-app">
+							<div class="portfolio-img"><img src="{{ asset('/uploads/images/produits/' ~ n.image) }}" class="img-fluid" alt=""></div>
+							<div class="portfolio-info">
+								<h4>{{n.marque}}</h4>
+								<p>{{n.prix}}
+									DT</p>
+							</div>
+						</div>
+					{% endfor %}
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Portfolio Section -->
+
+
+		<!-- ======= Contact Section ======= -->
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Contact</h2>
+					<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-5 d-flex align-items-stretch">
+						<div class="info">
+							<div class="address">
+								<i class="bi bi-geo-alt"></i>
+								<h4>Location:</h4>
+								<p>A108 Adam Street, New York, NY 535022</p>
+							</div>
+
+							<div class="email">
+								<i class="bi bi-envelope"></i>
+								<h4>Email:</h4>
+								<p>info@example.com</p>
+							</div>
+
+							<div class="phone">
+								<i class="bi bi-phone"></i>
+								<h4>Call:</h4>
+								<p>+1 5589 55488 55s</p>
+							</div>
+
+							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+						</div>
+
+					</div>
+
+					<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+						<form action="forms/contact.php" method="post" role="form" class="php-email-form">
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="name">Your Name</label>
+									<input type="text" name="name" class="form-control" id="name" required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="name">Your Email</label>
+									<input type="email" class="form-control" name="email" id="email" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name">Subject</label>
+								<input type="text" class="form-control" name="subject" id="subject" required>
+							</div>
+							<div class="form-group">
+								<label for="name">Message</label>
+								<textarea class="form-control" name="message" rows="10" required></textarea>
+							</div>
+							<div class="my-3">
+								<div class="loading">Loading</div>
+								<div class="error-message"></div>
+								<div class="sent-message">Your message has been sent. Thank you!</div>
+							</div>
+							<div class="text-center">
+								<button type="submit">Send Message</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+		</section><!-- End Contact Section --></body>
+</html></main><!-- End #main --><linkrel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}{% block stylesheets %}
+{{ encore_entry_link_tags('app') }}{% endblock %}{% block javascripts %}
+{{ encore_entry_script_tags('app') }}{% endblock %}</head><body>{% block body %}{% endblock %}</body><footer id="footer"><div class="footer-newsletter">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-6">
+			<h4>Shop now
+			</h4>
+			<p>commander votre article préferé</p>
+			<form action="" method="post">
+				<input type="email" name="email"><input type="submit" value="Shop">
+			</form>
+		</div>
+	</div>
+</div></div><div class="footer-top">
+<div class="container">
+	<div class="row">
+
+		<div class="col-lg-3 col-md-6 footer-contact">
+			<h3>Arsha</h3>
+			<p>
+				A108 Adam Street
+				<br>
+				New York, NY 535022<br>
+				United States
+				<br><br>
+				<strong>Phone:</strong>
+				+1 5589 55488 55<br>
+				<strong>Email:</strong>
+				info@example.com<br>
+			</p>
+		</div>
+
+		<div class="col-lg-3 col-md-6 footer-links">
+			<h4>Useful Links</h4>
+			<ul>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">About us</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Services</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Terms of service</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Privacy policy</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-lg-3 col-md-6 footer-links">
+			<h4>Our Services</h4>
+			<ul>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Web Design</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Web Development</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Product Management</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Marketing</a>
+				</li>
+				<li>
+					<i class="bx bx-chevron-right"></i>
+					<a href="#">Graphic Design</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-lg-3 col-md-6 footer-links">
+			<h4>Our Social Networks</h4>
+			<p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+			<div class="social-links mt-3">
+				<a href="#" class="twitter">
+					<i class="bx bxl-twitter"></i>
+				</a>
+				<a href="#" class="facebook">
+					<i class="bx bxl-facebook"></i>
+				</a>
+				<a href="#" class="instagram">
+					<i class="bx bxl-instagram"></i>
+				</a>
+				<a href="#" class="google-plus">
+					<i class="bx bxl-skype"></i>
+				</a>
+				<a href="#" class="linkedin">
+					<i class="bx bxl-linkedin"></i>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</div></div><div class="container footer-bottom clearfix">
+<div class="copyright">
+	&copy; Copyright
+	<strong>
+		<span>Arsha</span>
+	</strong>. All Rights Reserved
+</div>
+<div class="credits">
+	<!-- All the links in the footer should remain intact. -->
+	<!-- You can delete the links only if you purchased the pro version. -->
+	<!-- Licensing information: https://bootstrapmade.com/license/ -->
+	<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+	Designed by<a href="https://bootstrapmade.com/"> BootstrapMade</a>
+</div></div></footer><!-- End Footer --><div id="preloader"></div><a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a><!-- Vendor JS Files --><script src="{{asset('assetsMagasin/vendor/aos/aos.js')}}"></script><script src="{{asset('assetsMagasin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script><script src="{{asset('assetsMagasin/vendor/glightbox/js/glightbox.min.js')}}"></script><script src="{{asset('assetsMagasin/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script><script src="{{asset('assetsMagasin/vendor/swiper/swiper-bundle.min.js')}}"></script><script src="{{asset('assetsMagasin/vendor/waypoints/noframework.waypoints.js')}}"></script><script src="{{asset('assetsMagasin/vendor/php-email-form/validate.js')}}"></script><!-- Template Main JS File --><script src="assetsMagasin/js/main.js"></script><div id="id01" class="modal"><span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span><div class="modal-content" action="/action_page.php">
+<div class="container">
+	<h3>Passer une commande</h3>
+	<h5 id="message-info">Veuillez choisir la quantité</h5>
+	<div class="d-flex justify-content-center">
+		<input type="number" id="quantite-input" maxlength="30"/>
+	</div>
+	<br>
+	<div class="clearfix">
+		<a type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abondonner</a>
+		<p onclick="sendRequest()" id="btn-confirm" href="/" type="button">Confirmer</p>
+	</div>
+</div></div></div><script>var idProduct = 0;
+var quantite = 0;
+var productStock = 0;
+
+function openModal(id, stock) {
+productStock = stock
+idProduct = id;
+document.getElementById('id01').style.display = 'block';
+}
+
+function sendRequest() {
+quantite = document.getElementById('quantite-input').value;
+if (productStock > 0 && productStock >= quantite) {
+const xhr = new XMLHttpRequest();
+xhr.open("GET", 'passerCommande/' + idProduct + '/' + quantite);
+xhr.send();
+}
+
+document.getElementById('id01').style.display = 'none';
+
+}
+
+
+// Get the modal
+var modal = document.getElementById('id01');
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}</script></body></html>

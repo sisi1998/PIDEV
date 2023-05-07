@@ -1,4 +1,4 @@
-{% extends "baseBo.html.twig" %}
+{% extends "baseBOcom.html.twig" %}
 {% block content %}
 	<html lang="en">
 		<link href="/test/ff.css" rel="stylesheet">
@@ -11,8 +11,8 @@
 
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-			<link rel="stylesheet" href="/css/cssCA/style.css">
-			<link rel="stylesheet" href="/css/cssCA/bootstrap-datetimepicker.min.css">
+			<link rel="stylesheet" href="/cssSW/cssCA/style.css">
+			<link rel="stylesheet" href="/cssSW/cssCA/bootstrap-datetimepicker.min.css">
 			<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 			<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,6 +22,9 @@
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
 
 		</head>
+
+
+		
 		<div style="display: flex; flex-direction: row; flex-wrap: nowrap; width:100%;">
 			{{ form_start(form,{'attr':{'novalidate':'novalidate', 'style':"display: flex; flex-direction: column; margin-left: 50px; width: 30%"}}) }}
 			<div style="display: flex; align-items: center;">
@@ -58,18 +61,12 @@
 				{{ form_errors(form.arena) }}
 			</div>
 
-			<div style="display: flex; flex-direction: column;">
-				{{form_label(form.genre,"Genre")}}
-				{{ form_widget(form.genre,{'attr':{'class':'form-control','style':'width: 290px;margin-left: 45px;border-radius: 30px; width: 100 px;' } }) }}
-				{{ form_errors(form.genre) }}
+		<div style="display: flex; flex-direction: column;">
+				{{form_label(form.image,"Arena")}}
+				{{ form_widget(form.image,{'attr':{'class':'form-control','style':'width: 290px;margin-left: 45px;border-radius: 30px; width: 100 px;' } }) }}
+				{{ form_errors(form.image) }}
 			</div>
-
-				<div style="display: flex; flex-direction: column;">
-				{{form_label(form.Image,"Image")}}
-				{{ form_widget(form.Image,{'attr':{'class':'form-control','style':'width: 290px;margin-left: 45px;border-radius: 30px; width: 100 px;' } }) }}
-				{{ form_errors(form.Image) }}
-			</div>
-
+			
 			<br>
 			<button type="submit" class="btn btn-primary" style="width: 150px; margin-left: auto; margin-right: auto">Create!</button>
 			{{ form_end(form) }}
@@ -98,13 +95,13 @@
 							</div>
 						</div>
 
-						<script src="/js/jsCA/jquery.min.js"></script>
-						<script src="/js/jsCA/popper.js"></script>
-						<script src="/js/jsCA/bootstrap.min.js"></script>
-						<script src="/js/jsCA/moment-with-locales.min.js"></script>
-						<script src="/js/jsCA/bootstrap-datetimepicker.min.js"></script>
-						<script src="/js/jsCA/main.js"></script>
-						<script src="/js/tableHandler/tableHandler.js"></script>
+						<script src="/jsSW/jsCA/jquery.min.js"></script>
+						<script src="/jsSW/jsCA/popper.js"></script>
+						<script src="/jsSW/jsCA/bootstrap.min.js"></script>
+						<script src="/jsSW/jsCA/moment-with-locales.min.js"></script>
+						<script src="/jsSW/jsCA/bootstrap-datetimepicker.min.js"></script>
+						<script src="/jsSW/jsCA/main.js"></script>
+						<script src="/jsSW/tableHandler/tableHandler.js"></script>
 						<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/jquery/dist/jquery.min.js"></script>
 						<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 

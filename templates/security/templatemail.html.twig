@@ -1,0 +1,20 @@
+{% block title %}Réinitialisation de mot de passe
+{% endblock %}
+
+{% block body %}
+	<h1>Welcome
+		{{ name }}
+		!</h1>
+
+	<p>
+		vous avez oublié votre mot de passe, appuiez sur le lien ci dessous pour le récupérer
+	</p>
+
+	<p>
+		<a href={{url }}>Click here to change password</a>
+
+		<img src="{{ asset('assets/img/favicon.png') }}" width="600px" height="400px"/>
+	</p>
+
+
+{% endblock %}

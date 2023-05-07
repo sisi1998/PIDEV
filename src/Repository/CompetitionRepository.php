@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Competition;
 use App\Repository\PerformanceCRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -41,22 +41,38 @@ class CompetitionRepository extends ServiceEntityRepository
     }
 
 
-    public function rechercheAvance($str) {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT P
-                FROM App\Entity\Competition 
-                WHERE P.Nom LIKE :str'
-            )
-            ->setParameter('str', '%'.$str.'%')
-            ->getResult();
+    // public function rechercheAvance($str) {
+    //     return $this->getEntityManager()
+    //         ->createQuery(
+    //             'SELECT P
+    //             FROM App\Entity\Competition 
+    //             WHERE P.Nom LIKE :str'
+    //         )
+    //         ->setParameter('str', '%'.$str.'%')
+    //         ->getResult();
     
-    }
+// }
 
 
    
+//multiple search 
+  public function searchByCriteria($val)
+{
+    $qb = $this->createQueryBuilder('e');
 
+        $qb->where($qb->expr()->orX(
+            $qb->expr()->like('e.Nom', ':searchTerm'),
+            $qb->expr()->like('e.Date', ':searchTerm'),
+            $qb->expr()->like('e.etat', ':searchTerm')
+        ))
+        ->setParameter('searchTerm', '%'.$val.'%')
+        ;
 
+        return $qb->getQuery()->getResult();
+    
+}
+        
+    
   
 //    /**
 //     * @return Competition[] Returns an array of Competition objects
@@ -103,16 +119,17 @@ public function findCompetitionUnFinished(){
  //Recherche :
    //using query builder
   
+    
+   public function searchByName($searchTerm)
+   {
+       $qb = $this->createQueryBuilder('c')
+           ->where('c.nom LIKE :searchTerm')
+           ->setParameter('searchTerm', '%'.$searchTerm.'%');
 
-    public function findBycritere($competition)
-    {      
-        $this->createQueryBuilder('c')
-        ->andWhere('c.Nom LIKE :nom')
-        ->orWhere('c.etat LIKE :etat')
-        ->orWhere('c.genre LIKE :genre')
-        ->setParameter('nom', '%'.$competition->getNom().'%')
-        ->setParameter('etat','%'.$competition->getEtat().'%')
-        ->setParameter('genre','%'.$competition->getGenre().'%')
-        ->getQuery()
-        ->execute();
-}}
+       return $qb->getQuery()->getResult();
+   }
+
+
+   
+
+    }

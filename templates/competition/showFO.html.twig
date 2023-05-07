@@ -1,105 +1,242 @@
-{% extends "baseFO.html.twig" %}
+{% extends "baseFOcom.html.twig" %}
 {% block content %}
 
 
 	<section id="services" class="services section-bg">
 		<div class="container" data-aos="fade-up">
 
-			<div class="section-title">
-				<section id="portfolio-details" class="portfolio-details" margin-left :50%>
-					<h2>{{ competition.nom}}</h2>
-					<p>Pour mieux gérer les competitions.</p>
-
-					<center>
-
-						<div class="container ">
-
-							<div class="row gy-4 forced" style="display: flex;
-									  align-content: center;
-									  justify-content: center;
-									  align-items: center;
-									  flex-wrap: nowrap;
-									  flex-direction: row;">
-
-								<div class="col-lg-8">
-									<div class="portfolio-details-slider swiper">
-										<div class="swiper-wrapper align-items-center">
-
-											<div class="swiper-slide">
-												<img src="/img/imgFO/01.jpg" alt="">
-											</div>
-
-											<div class="swiper-slide">
-												<img src="/img/imgFO/02.jpg" alt="">
-											</div>
-
-											<div class="swiper-slide">
-												<img src="/img/imgFO/01.jpg" alt="">
-											</div>
-
-										</div>
-										<div class="swiper-pagination"></div>
-									</div>
-								</div>
-							</div>
-						</center>
-
-
-						<div class="row">
-							{% for  equipe in competition.getEquipes()  %}
-								<div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-									<div class="icon-box">
-										<div class="icon">
-											<i class="bx bxl-dribbble"></i>
-										</div>
-										<h4>
-											<a href="">{{ equipe.id}}</a>
-										</h4>
-										<p>{{ equipe.nom}}</p>
-
-
-									</div>
-								</div>
-							{% endfor %}
-
-
-						</div>
-
 					</section>
 					<!-- End Services Section -->
 
 
 					<!-- Favicons -->
-					<link href="/img/fav.png" rel="icon">
+					<link href="/imgSW/fav.png" rel="icon">
 					<link
-					href="/img/imgB/apple-touch-icon.png" rel="apple-touch-icon">
+					href="/imgSW/imgB/apple-touch-icon.png" rel="apple-touch-icon">
 
 					<!-- Google Fonts -->
 					<link
 					href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
 					<!-- Vendor CSS Files -->
-					<link href="/vendor/vendorB/aos/aos.css" rel="stylesheet">
-					<link href="/vendor/vendorB/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-					<link href="/vendor/vendorB/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-					<link href="/vendor/vendorB/boxicons/css/boxicons.min.css" rel="stylesheet">
-					<link href="/vendor/vendorB/glightbox/css/glightbox.min.css" rel="stylesheet">
-					<link href="/vendor/vendorB/remixicon/remixicon.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/aos/aos.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/boxicons/css/boxicons.min.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/glightbox/css/glightbox.min.css" rel="stylesheet">
+					<link href="/vendorSW/vendorB/remixicon/remixicon.css" rel="stylesheet">
 					<link
-					href="/vendor/vendorB/swiper/swiper-bundle.min.css" rel="stylesheet">
+					href="/vendorSW/vendorB/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 					<!-- Template Main CSS File -->
-					<link href="/css/cssB/style.css" rel="stylesheet">
+					<link href="/cssSW/cssB/style.css" rel="stylesheet">
 
-					<script src="/vendor/vendorB/aos/aos.js"></script>
-					<script src="/vendor/vendorB/bootstrap/js/bootstrap.bundle.min.js"></script>
-					<script src="/vendor/vendorB/glightbox/js/glightbox.min.js"></script>
-					<script src="/vendor/vendorB/isotope-layout/isotope.pkgd.min.js"></script>
-					<script src="/vendor/vendorB/swiper/swiper-bundle.min.js"></script>
-					<script src="/vendor/vendorB/waypoints/noframework.waypoints.js"></script>
-					<script src="/vendor/vendorB/php-email-form/validate.js"></script>
+					<script src="/vendorSW/vendorB/aos/aos.js"></script>
+					<script src="/vendorSW/vendorB/bootstrap/js/bootstrap.bundle.min.js"></script>
+					<script src="/vendorSW/vendorB/glightbox/js/glightbox.min.js"></script>
+					<script src="/vendorSW/vendorB/isotope-layout/isotope.pkgd.min.js"></script>
+					<script src="/vendorSW/vendorB/swiper/swiper-bundle.min.js"></script>
+					<script src="/vendorSW/vendorB/waypoints/noframework.waypoints.js"></script>
+					<script src="/vendorSW/vendorB/php-email-form/validate.js"></script>
 
 					<!-- Template Main JS File -->
-					<script src="/js/jsB/main.js"></script>
+					<script src="/jsSW/jsB/main.js"></script>
+					
+
+	<!--************************************
+					Upcoming Match Start
+			*************************************-->
+		
+			<!--************************************
+					Upcoming Match End
+			
+
+				<!--************************************
+					Fixtures Start
+			*************************************-->
+			<section class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="tg-section-name">
+						
+					</div>
+					<div class="col-sm-11 col-xs-11 pull-right">
+						<div class="row">
+							<div class="tg-latestresult">
+								<div class="row">
+									<div class="col-md-5 col-sm-12 col-xs-12">
+										<div class="tg-contentbox">
+											<div class="tg-section-heading"><h2>{{ competition.nom}}</h2></div>
+											<div class="tg-description">
+												<p></p>
+											</div>
+											<div class="tg-btnbox">
+											
+											</div>
+										</div>
+									</div>
+									<div class="col-md-7 col-sm-12 col-xs-12">
+										<div id="tg-upcomingmatch-slider" class="tg-upcomingmatch-slider tg-upcomingmatch">
+										{% for  equipe in competition.getEquipes()  %}
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<div class="tg-match">
+														<div class="tg-matchdetail">
+															<div class="tg-box">
+																<strong class="tg-teamlogo">
+																<td><img src="{{ asset('/uploads/equipe/' ~ equipe.getLogo()) }}" width="40px" height="40px" alt=""/></td>
+
+																</strong>
+																<h3>{{ equipe.nom}}</h3>
+															</div>
+															
+														</div>
+														<div class="tg-matchhover">
+															<address>{{competition.date}}<br>{{competition.arena.nom}}</address>
+															<div class="tg-btnbox">
+																<a class="tg-btn" href="#"><span>read more</span></a>
+																   <td><img src="{{ asset('/uploads/equipe/' ~ competition.getImage()) }}" width="300px" height="200px" alt=""/>
+																<a class="tg-btn" href="#"><span>book my ticket</span></a>
+															</div>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+												
+														</div>
+														
+													</div>
+											
+														
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--************************************
+					Fixtures End
+			*************************************-->
+
+
+
+				<!--************************************
+					Video Start
+			*************************************-->
+			<section class="tg-videobox tg-haslayout">
+				<figure>
+					<img src="/imgSW/imgW/bg-video.jpg" alt="image description">
+					<figcaption>
+						<a class="tg-playbtn" href="https://youtu.be/iC9CpnSj-MU?iframe=true" data-rel="prettyPhoto[iframe]"></a>
+						
+					</figcaption>
+				</figure>
+			</section>
+			<!--************************************
+					Video End
+			*************************************-->
+			<!--************************************
+					Video Start
+			*************************************--> 
+
+				<!--************************************
+					Blog Start
+			*************************************-->
+			<section class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="tg-section-name">
+						<h2>Latest blog / news</h2>
+					</div>
+					<div class="col-sm-11 col-xs-11 pull-right">
+						<div class="row">
+							<div class="tg-blogpost">
+								<div class="row">
+									<div class="col-sm-6 col-xs-12">
+										<article class="tg-post">
+											<figure class="tg-postimg">
+												<a href="#">
+													<img src="/imgSW/imgW/blog/img-01.jpg" alt="image description">
+												</a>
+												<figcaption>
+													<ul class="tg-postmetadata">
+														<li><a href="#">by admin</a></li>
+														<li><a href="#">04 comments</a></li>
+														<li><a href="#">lifestyle</a></li>
+													</ul>
+												</figcaption>
+											</figure>
+											<div class="tg-posttitle"><h3><a href="#">dipisicing elit sed do eiusmod tempor indunt</a></h3></div>
+											<div class="tg-description">
+												<p>Consectetur adipisicing elit sed do eiusmod temport incididunt utia labore et dolore magna aliqua enima ad minim veniam quistrud on ullamco laboris nisiut aliquip exea commodo consequat.</p>
+											</div>
+											<a class="tg-btn" href="#">Read more</a>
+										</article>
+									</div>
+									<div class="col-sm-6 col-xs-12">
+										<article class="tg-post">
+											<figure class="tg-postimg">
+												<a href="#">
+													<img src="/imgSW/imgW/blog/img-02.jpg" alt="image description">
+												</a>
+												<figcaption>
+													<ul class="tg-postmetadata">
+														<li><a href="#">by admin</a></li>
+														<li><a href="#">04 comments</a></li>
+														<li><a href="#">lifestyle</a></li>
+													</ul>
+												</figcaption>
+											</figure>
+											<div class="tg-posttitle"><h3><a href="#">dipisicing elit sed do eiusmod tempor indunt</a></h3></div>
+											<div class="tg-description">
+												<p>Consectetur adipisicing elit sed do eiusmod temport incididunt utia labore et dolore magna aliqua enima ad minim veniam quistrud on ullamco laboris nisiut aliquip exea commodo consequat.</p>
+											</div>
+											<a class="tg-btn" href="#"><span>read more</span></a>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--************************************
+					Blog End
+			*************************************-->
+		</main>
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="/cssSW/cssW/bootstrap.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/normalize.css">
+	<link rel="stylesheet" href="/cssSW/cssW/font-awesome.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/transitions.css">
+	<link rel="stylesheet" href="/cssSW/cssW/prettyPhoto.css">
+	<link rel="stylesheet" href="/cssSW/cssW/swiper.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/jquery-ui.css">
+	<link rel="stylesheet" href="/cssSW/cssW/animate.css">
+	<link rel="stylesheet" href="/cssSW/owl.theme.css">
+	<link rel="stylesheet" href="/cssSW/owl.carousel.css">
+	<link rel="stylesheet" href="/cssSW/customScrollbar.css">
+	<link rel="stylesheet" href="/cssSW/icomoon.css">
+	<link rel="stylesheet" href="/cssSW/main.css">
+	<link rel="stylesheet" href="/cssSW/color.css">
+	<link rel="stylesheet" href="/cssSW/responsive.css">
+	
+	<script src="/jsSW/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+       <script src="/jsSW/jsW/vendor/jquery-library.js"></script>
+	<script src="/jsSW/jsW/vendor/bootstrap.min.js"></script>
+	<script src="/jsSW/jsW/customScrollbar.min.js"></script>
+	<script src="/jsSW/jsW/owl.carousel.js"></script>
+	<script src="/jsSW/jsW/isotope.pkgd.js"></script>
+	<script src="/jsSW/jsW/prettyPhoto.js"></script>
+	<script src="/jsSW/jsW/swiper.min.js"></script>
+	<script src="/jsSW/jsW/jquery-ui.js"></script>
+	<script src="/jsSW/jsW/countTo.js"></script>
+	<script src="/jsSW/jsW/appear.js"></script>
+	<script src="/jsSW/jsW/main.js"></script>
+
+
+
 
 				{% endblock %}

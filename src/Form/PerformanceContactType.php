@@ -15,7 +15,9 @@ class PerformanceContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title',TextType::class,['label'=>'Titre',
+           ->add('title',TextType::class,['label'=>'Titre',
+            'attr'=>['class'=>'form-control']])
+            ->add('Nom',TextType::class,['label'=>'Nom',
             'attr'=>['class'=>'form-control']])
             ->add('email',EmailType::class,['label'=>'votre-email',
             'attr'=>['class'=>'form-control']])

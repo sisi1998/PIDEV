@@ -1,0 +1,49 @@
+{% extends 'base_mo.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/star_rating/css/star-rating.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/star_rating/js/star-rating.js') }}"></script>
+{% endblock %}
+{% block title %}Equipe{% endblock %}
+
+{% block body %}
+    <h1>Equipe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ equipe.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_equipe</th>
+                <td>{{ equipe.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Nb_joueurs</th>
+                <td>{{ equipe.nbJoueurs }}</td>
+            </tr>
+            <tr>
+                <th>Origine</th>
+                <td>{{ equipe.origine }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><img src="{{ asset('/uploads/equipe/' ~ equipe.getLogo()) }}" width="300px" height="200px" alt=""/></td>
+            </tr>
+
+        
+              
+        </body>
+    </table>
+
+    <a href="{{ path('app_equipe_index') }}">back to list</a>
+
+    <a href="{{ path('app_equipe_edit', {'id': equipe.id}) }}">edit</a>
+
+    {{ include('equipe/_delete_form.html.twig') }}
+{% endblock %}

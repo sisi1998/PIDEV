@@ -18,8 +18,7 @@ class CompetitionSearchType extends AbstractType
 
    
     ->add('Nom')
-    ->add('Etat')
-    ->add('Genre');
+;
 
     }
 

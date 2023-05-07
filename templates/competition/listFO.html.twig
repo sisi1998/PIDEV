@@ -1,12 +1,12 @@
-{% extends "baseFo.html.twig" %}
+{% extends "baseFOcom.html.twig" %}
 {% block content %}
 	
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="/css/contact.css" rel="stylesheet">
- <link href="/css/csstableper.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="/cssSW/contact.css" rel="stylesheet">
+ <link href="/cssSW/csstableper.css" rel="stylesheet">
+<link href="/netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="/netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="/code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -24,33 +24,35 @@
 		  <br>
 		  <br>
 		  <br>
-		    <br>
+		<br>
 		  <br>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-		   <div class="input-group custom-search-form">
-      <div class="album py-5 bg-light">
-                        <div class="container">
-                            <div class="sidebar-search" >
-                                <div class="input-group custom-search-form">
-                                    <input    type="text" id="search" class="form-control widget_input" placeholder="Chercher..." style="width: 1180px;background: white">
-                                </div>
-                                <br>
-                                <!-- /input-group -->
-                                <ul class="nav" id="side-menu">
-                                    <li>
-                                        <a href="#"> <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-second-level" id="entitiesNav">
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-		  <br>
+
+    <title>Awesome Search Box</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  </head>
+  <!-- Coded with love by Mutiullah Samim-->
+  <body>
+  {{ form_start(form) }}
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+        {{ form_widget(form.Nom, { 'attr': {'class': 'search_input'} }) }}
+
+	
+          <a type="submit" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
       </div>
     </div>
+    {{ form_end(form) }}
+  </body>
+
 
 
 			<div class="row">
@@ -79,14 +81,11 @@
 		<!-- End Services Section -->
 
 
-		<section id="cta" class="cta">
-			<div class="container" data-aos="zoom-in">
+		
 
-				<div class="row">
-					
-			
-				</div>
-			</div>
+
+
+
 
 
 			<!-- ======= Clients Section ======= -->
@@ -96,27 +95,27 @@
 					<div class="row" data-aos="zoom-in">
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-1.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-1.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-2.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-2.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-3.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-3.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-4.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-4.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-5.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-5.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-6.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-6.png" class="img-fluid" alt="">
 						</div>
 
 					</div>
@@ -125,6 +124,132 @@
 
 
 				
+			</section>
+<!--************************************
+				Home Slider Start
+		*************************************-->
+		<div class="tg-sliderbox">
+			<div class="tg-imglayer">
+				<img src="images/bg-pattran.png" alt="image desctription">
+			</div>
+			<div id="tg-home-slider" class="tg-home-slider tg-haslayout">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="images/slider/img-01.png" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+									<h2>from june 27</h2>
+									<a class="tg-btn" href="#"><span>read more</span></a>
+									<a class="tg-btn" href="#"><span>book my ticket</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="images/slider/img-01.png" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+									<h2>from june 27</h2>
+									<a class="tg-btn" href="#"><span>read more</span></a>
+									<a class="tg-btn" href="#"><span>book my ticket</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="container">
+							<figure class="floating">
+								<img src="" alt="image description">
+							</figure>
+							<div class="tg-slider-content">
+								<h1>alive and <span>kickin</span></h1>
+								<div class="tg-btnbox">
+									<h2>from june 27</h2>
+									<a class="tg-btn" href="#"><span>read more</span></a>
+									<a class="tg-btn" href="#"><span>book my ticket</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tg-btn-next">
+					<span>next</span>
+					<span class="fa fa-angle-down"></span>
+				</div>
+				<div class="tg-btn-prev">
+					<span>prev</span>
+					<span class="fa fa-angle-down"></span>
+				</div>
+			</div>
+		</div>
+		<!--************************************
+				Home Slider End
+		*************************************-->
+
+    <section class="tg-main-section tg-haslayout">
+				<div class="container">
+					<div class="tg-section-name">
+						<h2>Latest blog / news</h2>
+					</div>
+					<div class="col-sm-11 col-xs-11 pull-right">
+						<div class="row">
+							<div class="tg-blogpost">
+								<div class="row">
+									<div class="col-sm-6 col-xs-12">
+										<article class="tg-post">
+											<figure class="tg-postimg">
+												<a href="#">
+													<img src="/img/imgW/blog/img-01.jpg" alt="image description">
+												</a>
+												<figcaption>
+													<ul class="tg-postmetadata">
+														<li><a href="#">by admin</a></li>
+														<li><a href="#">04 comments</a></li>
+														<li><a href="#">lifestyle</a></li>
+													</ul>
+												</figcaption>
+											</figure>
+											<div class="tg-posttitle"><h3><a href="#">dipisicing elit sed do eiusmod tempor indunt</a></h3></div>
+											<div class="tg-description">
+												<p>Consectetur adipisicing elit sed do eiusmod temport incididunt utia labore et dolore magna aliqua enima ad minim veniam quistrud on ullamco laboris nisiut aliquip exea commodo consequat.</p>
+											</div>
+											<a class="tg-btn" href="#">Read more</a>
+										</article>
+									</div>
+									<div class="col-sm-6 col-xs-12">
+										<article class="tg-post">
+											<figure class="tg-postimg">
+												<a href="#">
+													<img src="/img/imgW/blog/img-02.jpg" alt="image description">
+												</a>
+												<figcaption>
+													<ul class="tg-postmetadata">
+														<li><a href="#">by admin</a></li>
+														<li><a href="#">04 comments</a></li>
+														<li><a href="#">lifestyle</a></li>
+													</ul>
+												</figcaption>
+											</figure>
+											<div class="tg-posttitle"><h3><a href="#">dipisicing elit sed do eiusmod tempor indunt</a></h3></div>
+											<div class="tg-description">
+												<p>Consectetur adipisicing elit sed do eiusmod temport incididunt utia labore et dolore magna aliqua enima ad minim veniam quistrud on ullamco laboris nisiut aliquip exea commodo consequat.</p>
+											</div>
+											<a class="tg-btn" href="#"><span>read more</span></a>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 
 			{% block body %}
@@ -186,6 +311,34 @@
             });
         });
     </script>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="/cssSW/cssW/bootstrap.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/normalize.css">
+	<link rel="stylesheet" href="/cssSW/cssW/font-awesome.min.css">
+	<link rel="stylesheet" href="/cssSW/cssW/transitions.css">
+	<link rel="stylesheet" href="/cssSW/cssW/prettyPhoto.css">
+	<link rel="stylesheet" href="/cssSW/cssW/swiper.min.css">
+	<link rel="stylesheet" href="/css/cssW/jquery-ui.css">
+	<link rel="stylesheet" href="/cssSW/cssW/animate.css">
+	<link rel="stylesheet" href="/cssSW/cssW/owl.theme.css">
+	<link rel="stylesheet" href="/cssSW/cssW/owl.carousel.css">
+	<link rel="stylesheet" href="/cssSW/cssW/customScrollbar.css">
+	<link rel="stylesheet" href="/cssSW/cssW/icomoon.css">
+	<link rel="stylesheet" href="/cssSW/cssW/main.css">
+	<link rel="stylesheet" href="/cssSW/cssW/color.css">
+	<link rel="stylesheet" href="/cssSW/cssW/responsive.css">
+	<script src="/jsSW/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="/jsSW/jsW/vendor/jquery-library.js"></script>
+	<script src="/jsSW/jsW/vendor/bootstrap.min.js"></script>
+	<script src="/jsSW/jsW/customScrollbar.min.js"></script>
+	<script src="/jsSW/jsW/owl.carousel.js"></script>
+	<script src="/jsSW/jsW/isotope.pkgd.js"></script>
+	<script src="/jsSW/jsW/prettyPhoto.js"></script>
+	<script src="/jsSW/jsW/swiper.min.js"></script>
+	<script src="/jsSW/jsW/jquery-ui.js"></script>
+	<script src="/jsSW/jsW/countTo.js"></script>
+	<script src="/jsSW/jsW/appear.js"></script>
+	<script src="/jsSW/jsW/main.js"></script>
 
 			 
 			<!-- End Cliens Section -->

@@ -1,0 +1,43 @@
+{% extends 'base_mo.html.twig' %}
+
+{% block title %}PerformanceEquipe index{% endblock %}
+
+{% block body %}
+    <h1>PerformanceEquipe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Victoires</th>
+                <th>Defaites</th>
+                <th>Nuls</th>
+                <th>But_marque</th>
+                <th>But_encaisses</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for performance_equipe in performance_equipes %}
+            <tr>
+                <td>{{ performance_equipe.id }}</td>
+                <td>{{ performance_equipe.victoires }}</td>
+                <td>{{ performance_equipe.defaites }}</td>
+                <td>{{ performance_equipe.nuls }}</td>
+                <td>{{ performance_equipe.butMarque }}</td>
+                <td>{{ performance_equipe.butEncaisses }}</td>
+                <td>
+                    <a href="{{ path('app_performance_equipe_show', {'id': performance_equipe.id}) }}">show</a>
+                    <a href="{{ path('app_performance_equipe_edit', {'id': performance_equipe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_performance_equipe_new') }}">Create new</a>
+{% endblock %}

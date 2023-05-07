@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Repository;
-
+use App\Entity\User;
 use App\Entity\PerformanceC;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository; // import the EntityRepository class
 
-/**
+
+
+/**use Doctrine\ORM\EntityRepository; // import the EntityRepository class
+
  * @extends ServiceEntityRepository<PerformanceC>
  *
  * @method PerformanceC|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,70 +51,159 @@ class PerformanceCRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();}
 
 
-    public function findByPlayer($player)
-    {return $this->createQueryBuilder('per')
-    ->where('per.joueurP =: player')
-    ->setParameter('player', $player)
-    ->getQuery()
-    ->getResult();
-    }
+        public function findCompetitionsByPlayer($id)
+        {
+            return $this->createQueryBuilder('p')
+                ->select('c')
+                ->leftJoin('p.performanceCs', 'pr')
+                ->leftJoin('pr.competitionP', 'c')
+                ->where('p.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()
+                ->getResult();
+        }
 
 
-     public function findPLayerByAVG($min,$max){
-        $entityManager=$this->getEntityManager();
-        $query=$entityManager
-            ->createQuery("SELECT s FROM APP\Entity\Student s WHERE s.moyenne BETWEEN :min AND :max")
-            ->setParameter('min',$min)
-            ->setParameter('max',$max)
-            ;
+ 
+//  public function orderByButs()
+//     {
+//         return $this->createQueryBuilder('per')
+//             ->orderBy(intval('s.Buts'), 'buts')
+//             ->getQuery()->getResult();
+//     }
+
+    
+
+
+//         )
+//         ->setParameter('str', '%'.$str.'%')
+
+public function sumButs()
+{
+    $query = $this->createQueryBuilder('e')
+        ->select('SUM(e.Buts)')
+        ->where('e.Buts NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getSingleScalarResult();
+
+    return $result;
+}
+
+
+
+public function sumJaune()
+{
+    $query = $this->createQueryBuilder('e')
+        ->select('SUM(e.Jaune)')
+        ->where('e.Buts NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getSingleScalarResult();
+
+    return $result;
+}
+
+
+
+public function sumTpM()
+{
+    $query = $this->createQueryBuilder('e')
+        ->select('SUM(e.TpM)')
+        ->where('e.Buts NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getSingleScalarResult();
+
+    return $result;
+}
+
+public function sumRouge()
+{
+    $query = $this->createQueryBuilder('e')
+        ->select('SUM(e.Rouge)')
+        ->where('e.Buts NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getSingleScalarResult();
+
+    return $result;
+}
+
+
+public function sumPointsDecisives()
+{
+    $query = $this->createQueryBuilder('e')
+        ->select('SUM(e.PointsDecisives)')
+        ->where('e.Buts NOT LIKE :zero')
+        ->setParameter('zero', '0')
+        ->getQuery();
+
+    $result = $query->getSingleScalarResult();
+
+    return $result;
+}
+
+public function sumAeriensG()
+{ $query = $this->createQueryBuilder('e')
+    ->select('SUM(e.AeriensG)')
+    ->where('e.Buts NOT LIKE :zero')
+    ->setParameter('zero', '0')
+    ->getQuery();
+
+$result = $query->getSingleScalarResult();
+
+return $result;
+}
+
+public function average($id): array
+{
+    $qb = $this->createQueryBuilder('per');
+    $qb->select(['user.id', 'competition.id', 'AVG(
+        (per.Apps * 2) + (per.Mins ) + (per.Buts * 20) + (per.PointsDecisives * 20)
+        - (per.Jaune) - (per.Rouge * 2) + (per.TpM) + (per.Pr * 2) + (per.HdM * 2)
+    ) as average'])
+       ->join('per.joueurP', 'user')
+       ->join('per.competitionP', 'competition')
+       ->where('user.id = :userId')
+       ->groupBy('user.id', 'competition.id')
+       ->setParameter('userId', $id);
+    
+    return $qb->getQuery()->getResult();
+}
+
+public function fpc($val)
+{
+    $entityManager = $this->getEntityManager();
+    
+    $query = $entityManager->createQuery(
+        'SELECT ap
+        FROM App\Entity\PerformanceC ap
+        JOIN ap.competitionP c
+        WHERE c.Nom LIKE :nom'
+    )
+    ->setParameter('nom', '%'.$val.'%');
+    
+    return $query->getResult();
+}
+
+
+
+public function findByPlayerId(int $playerId): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT p
+             FROM App\Entity\PerformanceC p
+             WHERE p.joueurP = :playerId'
+        )->setParameter('playerId', $playerId);
+
         return $query->getResult();
     }
-
- public function average($id):int
- {   $qb= $this->createQueryBuilder('per');
-     $qb ->where('per.id=:id');
-     $qb->setParameter('id', $id);
-     $average= intval('per.Apps')*10+intval('per.Mins'*10)+
-     intval('per.Buts'*20)+ intval('per.PointsDecivives'*20)
-     -intval('per.Jaune'*20)
-     -intval('per.Rouge'*10)
-     +intval('per.TpM'*10)
-     +intval('per.Pr'*10)
-     +intval('per.hdM'*10);
-    return $average;
-
- }
-
- public function orderByButs()
-    {
-        return $this->createQueryBuilder('per')
-            ->orderBy(intval('s.Buts'), 'buts')
-            ->getQuery()->getResult();
-    }
-
- public function listStudentByClass($id)
- {
-     return $this->createQueryBuilder('s')
-         ->join('s.classroom', 'c')
-         ->addSelect('c')
-         ->where('c.id=:id')
-         ->setParameter('id',$id)
-         ->getQuery()
-         ->getResult();
- }
-
- public function rechercheAvance($str) {
-    return $this->getEntityManager()
-        ->createQuery(
-            'SELECT P
-            FROM App\Entity\Competition P
-            WHERE P.Nom LIKE :str'
-        )
-        ->setParameter('str', '%'.$str.'%')
-        ->getResult();
-
-}
- 
 
 
 //    /**

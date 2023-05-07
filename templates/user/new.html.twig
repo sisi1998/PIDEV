@@ -1,0 +1,21 @@
+{% extends "backuser.html.twig" %}
+
+{% block title %}New User
+{% endblock %}
+
+{% block body %}
+<div>
+						Admin:
+						{{ admin.nom }}
+						|
+						<a href="{{ path('app_logout') }}">Déconnexion</a>
+					</div>
+	<center>
+		<h1>Ajouter un nouveau utilisateur
+		</h1>
+		{{include('user/_form.html.twig')}}
+
+
+		<a href="{{ path('app_user_index') }}">back to List</a>
+	</center>
+{% endblock %}

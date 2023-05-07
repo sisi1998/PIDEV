@@ -1,4 +1,4 @@
-{% extends "baseBO.html.twig" %}
+{% extends "baseBOcom.html.twig" %}
 {% block content %}
 	
 
@@ -19,16 +19,8 @@
 	  <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
-		{{ form_start(form) }}
-		 {{ form_widget(form.Nom)}}
-	    <button type="submit" class="btn btn-default">search</button>
-		  {{ form_end(form) }}
-        
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-		 
-		  
-			
-         
+		
+      
 		  <br>
 		  <br>
 		   <a class="getstarted scrollto" style="border-radius: 30px; border: solid; width : 20px"
@@ -55,7 +47,7 @@
 							<p>{{ competition.Date }}</p>
 							
 							<p>
-								<a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a></p>
+								
 								<p><a href="{{ path('deleteCompetmition',{'id':competition.id}) }}">delete</a></p>
 								<p><a href="{{ path('updateCompetition',{'id':competition.id}) }}">update</a></p>
 							</p>
@@ -91,27 +83,27 @@
 					<div class="row" data-aos="zoom-in">
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-1.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-1.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-2.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-2.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-3.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-3.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-4.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-4.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-5.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-5.png" class="img-fluid" alt="">
 						</div>
 
 						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-							<img src="img/imgB/clients/client-6.png" class="img-fluid" alt="">
+							<img src="imgSW/imgB/clients/client-6.png" class="img-fluid" alt="">
 						</div>
 
 					</div>
@@ -120,6 +112,6 @@
 			</section>
 
 			 <a href="{{ path('addCompetition')}}" class="btn"  style="border-radius: 20px; border: 2px ;" ><i class="icon-pencil"></i> <strong>Ajouter une competition</strong></a>
-			  <script src="/vendor/vendorB/aos/aos.js"></script>
+			  <script src="/vendorSW/vendorB/aos/aos.js"></script>
 			<!-- End Cliens Section -->
 		{% endblock %}

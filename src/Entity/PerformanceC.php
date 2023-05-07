@@ -7,13 +7,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use App\Repository\PerformanceCRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Joueur;
+
+use App\Entity\User;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 
 #[UniqueEntity(
     fields :['joueurP','competitionP'],
-    errorPath: 'joeurP',
+    errorPath: 'joueurP',
     message : 'Une performance existe déjà avec cette date et arena')]
 #[ORM\Entity(repositoryClass: PerformanceCRepository::class)]
 
@@ -22,74 +24,88 @@ class PerformanceC
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("perfs")]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'performanceCs')]
-    private ?joueur $joueurP = null;
 
+    #[Groups("perfs")]
+    #[ORM\ManyToOne(inversedBy: 'performanceCs')]
+    private ?User $joueurP = null;
+
+    #[Groups("perfs")]
     #[ORM\ManyToOne(inversedBy: 'performanceCs')]
     private ?Competition $competitionP = null;
 
-
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+  /**
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="The value {{ value }} is not a valid integer."
+     * )
+     */
+    #[Groups("perfs")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Apps = null;
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Groups("perfs")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Mins = null;
 
-
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Groups("perfs")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Buts = null;
 
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $PointsDecisives = null;
 
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Jaune = null;
 
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Rouge = null;
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $TpM = null;
 
- #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Pr = null;
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $AeriensG = null;
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+    #[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
 private ?string $HdM = null;
 
-    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
+#[Assert\Regex(pattern:"/^[0-9]+$/",message:" Entree invalide ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Note = null;
+
+#[ORM\ManyToOne(inversedBy: 'performanceCs')]
+private ?User $user = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getJoueurP(): ?Joueur
+    public function getJoueurP(): ?User
     {
         return $this->joueurP;
     }
 
-    public function setJoueurP(?Joueur $joueurP): self
+    public function setJoueurP(?User $joueurP): self
     {
         $this->joueurP = $joueurP;
 
@@ -236,6 +252,18 @@ private ?string $HdM = null;
     public function setNote(?string $Note): self
     {
         $this->Note = $Note;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

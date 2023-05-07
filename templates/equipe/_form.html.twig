@@ -1,0 +1,28 @@
+<head>
+	<style>
+		form label {
+			display: inline-block;
+			width: 150px;
+			text-align: right;
+			margin-right: 10px;
+		}
+
+		form input,
+		form select,
+		form textarea {
+			display: inline-block;
+			width: 300px;
+		}
+	</style>
+</head>
+{{ form_start(form) }}
+{% for field in form %}
+	<table>
+		<th>
+
+			{{ form_label(field) }}
+			{{ form_widget(field) }}
+			{{ form_errors(field) }}
+		</th>
+	</table>
+</table>{% endfor %}<br/><button>{{ button_label|default('Enregistrer') }}</button>{{ form_end(form) }}

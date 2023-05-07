@@ -3,12 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Competition;
-use App\Entity\Joueur;
+use App\Entity\User;
 use App\Entity\PerformanceC;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository; // import the EntityRepository class
 
 
 class PerformanceCType extends AbstractType
@@ -29,12 +30,22 @@ class PerformanceCType extends AbstractType
             ->add('Note')
 
             ->add('joueurP', EntityType::class, [
-                'class' => Joueur::class,
+                'class' => User::class,
                 'placeholder' => 'joueur',
                 'choice_label'=>'Nom',
                 'multiple' => false,
-                'expanded' => false
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->andWhere('u.role LIKE :role')
+                        ->setParameter('role', '%joueur%')
+                        ->orderBy('u.nom', 'ASC');
+                },
             ])
+
+
+
+        
             ->add('competitionP', EntityType::class, [
                 'class' => Competition::class,
                 'placeholder' => 'competition',

@@ -1,0 +1,36 @@
+{# {% extends 'baseback.html.twig' %} #}
+{% block title %}Ajouter Arene
+{% endblock %}
+{% block body %}
+	{{ form_start(formA) }}
+	<table>
+		<tr>
+
+			<td>{{form_label(formA.TERRAIN,"Nom de terrain") }}
+			</td>
+			<td>{{form_widget(formA.TERRAIN) }}
+			</td>
+			<td>{{form_errors(formA.TERRAIN) }}
+			</td>
+		</tr>
+		<tr>
+
+			<td>{{form_label(formA.surface,"surface") }}
+			</td>
+			<td>{{form_widget(formA.surface) }}
+			</td>
+			<td>{{form_errors(formA.surface) }}
+			</td>
+		</tr>
+
+	</table>
+	<tr>
+
+		<td>{{form_widget(formA) }}
+		</td>
+
+	</tr>
+
+
+	{{ form_end(formA) }}
+{% endblock %}

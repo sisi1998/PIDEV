@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+
+<table>
+	{% for field in form %}
+		<tr>
+			<td>{{ form_label(field) }}</td>
+			<td>{{ form_widget(field) }}</td>
+			<td>{{ form_errors(field) }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+<button>{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

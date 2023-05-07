@@ -1,0 +1,11 @@
+{# {% block body %}
+    <h1> edit MembershipCat</h1>
+
+    {{ include('membership_cat/_form.html.twig') }}
+
+    <a href="{{ path('memberships') }}">back to list</a>
+{% endblock %} #}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {# <button class="btn">{{ button_label|default('edit Membership') }}</button> #}
+{{ form_end(form) }}

@@ -1,23 +1,54 @@
 
 {% block body %}
-      {% for per in listP %}
-      <p><span style="color:red;font-size:15px;">Nom jour :</span>{{ per.joueurP.getNom() }}</p>
-            <p><span style="color:red;font-size:15px;">Competition jour :</span>{{ per.competitionP.getNom() }}</p>
 
-        <p>{{ per.Apps}}</p>
-         <p>{{ per.Mins}}</p>
-          <p>{{ per.Buts}}</p>
-           <p>{{ per.PointsDecisives}}</p>
-            <p>{{ per.Jaune}}</p>
-             <p>{{ per.Rouge}}</p>
-              <p>{{ per.TpM}}</p>
-                <p>{{ per.Pr}}</p>
-               <p>{{ per.AeriensG}}</p>
-                 <p>{{per.HdM}}</p>
-                <p>{{ per.Note}}</p>
-                 </tr>
+
+<h1>{{title}}</h1>
+     <table class="table table-striped custab" style="  border: 1px solid">
+    <thead style="  border: 1px solid" >
+   
+            <th>joueur</th>
+            <th>competition</th>
+            <th> Apps</th>
+              <th>Mins</th>
+               <th>Buts</th>
+        <th>points decisives</th>
+        <th>Jaune</th>
+        <th>Rouge</th>
+        <th>tpm</th>
+        <th>pr</th>
+        <th>AG</th>
+         <th>hddm</th>
+          <th>note</th>
+            
+       
+        </tr>
+    </thead>
+      {% for per in listP %}
+             <tr >
+      <td style="  border: 1px solid">{{ per.joueurP.getNom() }}</td>
+        <td style="  border: 1px solid">{{ per.competitionP.getNom()}}</td>
+        <td style="  border: 1px solid">{{ per.Apps}}</td>
+         <td style="  border: 1px solid">{{ per.Mins}}</td>
+          <td style="  border: 1px solid">{{ per.Buts}}</td>
+           <td style="  border: 1px solid">{{ per.PointsDecisives}}</td>
+            <td style="  border: 1px solid">{{ per.Jaune}}</td>
+             <td style="  border: 1px solid">{{ per.Rouge}}</td>
+              <td style="  border: 1px solid">{{ per.TpM}}</td>
+                <td style="  border: 1px solid">{{ per.Pr}}</td>
+               <td style="  border: 1px solid">{{ per.AeriensG}}</td>
+                 <td style="  border: 1px solid">{{per.HdM}}</td>
+                <td style="  border: 1px solid">{{ per.Note}}</td>
+                  
+                  
+        </tr>
                 
     {% endfor %}
+
+            
+    </table>
+    <h3>signature d'agent administatif</h3>
+     <h4>ce document est officiel</h4>
+   
 
             
     </div>

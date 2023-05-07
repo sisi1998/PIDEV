@@ -1,0 +1,42 @@
+{% extends 'base_mo.html.twig' %}
+
+{% block title %}PerformanceEquipe{% endblock %}
+
+{% block body %}
+    <h1>PerformanceEquipe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ performance_equipe.id }}</td>
+            </tr>
+            <tr>
+                <th>Victoires</th>
+                <td>{{ performance_equipe.victoires }}</td>
+            </tr>
+            <tr>
+                <th>Defaites</th>
+                <td>{{ performance_equipe.defaites }}</td>
+            </tr>
+            <tr>
+                <th>Nuls</th>
+                <td>{{ performance_equipe.nuls }}</td>
+            </tr>
+            <tr>
+                <th>But_marque</th>
+                <td>{{ performance_equipe.butMarque }}</td>
+            </tr>
+            <tr>
+                <th>But_encaisses</th>
+                <td>{{ performance_equipe.butEncaisses }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_performance_equipe_index') }}">back to list</a>
+
+    <a href="{{ path('app_performance_equipe_edit', {'id': performance_equipe.id}) }}">edit</a>
+
+    {{ include('performance_equipe/_delete_form.html.twig') }}
+{% endblock %}
